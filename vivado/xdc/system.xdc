@@ -48,58 +48,51 @@ set_property IOSTANDARD LVCMOS18 [get_ports i2c_4_sda_io]
 set_property PACKAGE_PIN C8 [get_ports i2c_4_scl_io]
 set_property IOSTANDARD LVCMOS18 [get_ports i2c_4_scl_io]
 
-# SiI9136-3 timing
-#set_property PACKAGE_PIN L13 [get_ports vid_clk]
-#set_property IOSTANDARD LVCMOS33 [get_ports vid_clk]
+# IT6801 timing
+set_property PACKAGE_PIN L13 [get_ports vid_clk]
+set_property IOSTANDARD LVCMOS33 [get_ports vid_clk]
 
-#set_property PACKAGE_PIN K14 [get_ports vid_de]
-#set_property IOSTANDARD LVCMOS33 [get_ports vid_de]
+set_property PACKAGE_PIN K14 [get_ports vid_de]
+set_property IOSTANDARD LVCMOS33 [get_ports vid_de]
 
-#set_property PACKAGE_PIN H12 [get_ports vid_vs]
-#set_property IOSTANDARD LVCMOS33 [get_ports vid_vs]
+set_property PACKAGE_PIN H12 [get_ports vid_vs]
+set_property IOSTANDARD LVCMOS33 [get_ports vid_vs]
 
-#set_property PACKAGE_PIN J12 [get_ports vid_hs]
-#set_property IOSTANDARD LVCMOS33 [get_ports vid_hs]
+set_property PACKAGE_PIN J12 [get_ports vid_hs]
+set_property IOSTANDARD LVCMOS33 [get_ports vid_hs]
 
-## IT6801 data
-#set_property PACKAGE_PIN J14 [get_ports {vid_data[0]}]
-#set_property PACKAGE_PIN H13 [get_ports {vid_data[1]}]
-#set_property PACKAGE_PIN H14 [get_ports {vid_data[2]}]
-#set_property PACKAGE_PIN F13 [get_ports {vid_data[3]}]
-#set_property PACKAGE_PIN G13 [get_ports {vid_data[4]}]
-#set_property PACKAGE_PIN L14 [get_ports {vid_data[5]}]
-#set_property PACKAGE_PIN C14 [get_ports {vid_data[6]}]
-#set_property PACKAGE_PIN C13 [get_ports {vid_data[7]}]
-#set_property PACKAGE_PIN B14 [get_ports {vid_data[8]}]
-#set_property PACKAGE_PIN A14 [get_ports {vid_data[9]}]
-#set_property PACKAGE_PIN B13 [get_ports {vid_data[10]}]
-#set_property PACKAGE_PIN A13 [get_ports {vid_data[11]}]
-#set_property PACKAGE_PIN E14 [get_ports {vid_data[12]}]
-#set_property PACKAGE_PIN E13 [get_ports {vid_data[13]}]
-#set_property PACKAGE_PIN F12 [get_ports {vid_data[14]}]
-#set_property PACKAGE_PIN F11 [get_ports {vid_data[15]}]
-#set_property PACKAGE_PIN A11 [get_ports {vid_data[16]}]
-#set_property PACKAGE_PIN A12 [get_ports {vid_data[17]}]
-#set_property PACKAGE_PIN C12 [get_ports {vid_data[18]}]
-#set_property PACKAGE_PIN D12 [get_ports {vid_data[19]}]
-#set_property PACKAGE_PIN A10 [get_ports {vid_data[20]}]
-#set_property PACKAGE_PIN B11 [get_ports {vid_data[21]}]
-#set_property PACKAGE_PIN B10 [get_ports {vid_data[22]}]
-#set_property PACKAGE_PIN C11 [get_ports {vid_data[23]}]
+# IT6801 data
+set_property PACKAGE_PIN J14 [get_ports {vid_data[0]}]
+set_property PACKAGE_PIN H13 [get_ports {vid_data[1]}]
+set_property PACKAGE_PIN H14 [get_ports {vid_data[2]}]
+set_property PACKAGE_PIN F13 [get_ports {vid_data[3]}]
+set_property PACKAGE_PIN G13 [get_ports {vid_data[4]}]
+set_property PACKAGE_PIN L14 [get_ports {vid_data[5]}]
+set_property PACKAGE_PIN C14 [get_ports {vid_data[6]}]
+set_property PACKAGE_PIN C13 [get_ports {vid_data[7]}]
+set_property PACKAGE_PIN B14 [get_ports {vid_data[8]}]
+set_property PACKAGE_PIN A14 [get_ports {vid_data[9]}]
+set_property PACKAGE_PIN B13 [get_ports {vid_data[10]}]
+set_property PACKAGE_PIN A13 [get_ports {vid_data[11]}]
+set_property PACKAGE_PIN E14 [get_ports {vid_data[12]}]
+set_property PACKAGE_PIN E13 [get_ports {vid_data[13]}]
+set_property PACKAGE_PIN F12 [get_ports {vid_data[14]}]
+set_property PACKAGE_PIN F11 [get_ports {vid_data[15]}]
+set_property PACKAGE_PIN A11 [get_ports {vid_data[16]}]
+set_property PACKAGE_PIN A12 [get_ports {vid_data[17]}]
+set_property PACKAGE_PIN C12 [get_ports {vid_data[18]}]
+set_property PACKAGE_PIN D12 [get_ports {vid_data[19]}]
+set_property PACKAGE_PIN A10 [get_ports {vid_data[20]}]
+set_property PACKAGE_PIN B11 [get_ports {vid_data[21]}]
+set_property PACKAGE_PIN B10 [get_ports {vid_data[22]}]
+set_property PACKAGE_PIN C11 [get_ports {vid_data[23]}]
 
-#set_property IOSTANDARD LVCMOS33 [get_ports {vid_data[*]}]
-
-## HDMII_INT
-#set_property PACKAGE_PIN G14 [get_ports hdmi_int]
-#set_property IOSTANDARD LVCMOS33 [get_ports hdmi_int]
-### HDMII_SYSRSTN
-#set_property PACKAGE_PIN G15 [get_ports hdmi_rstn]
-#set_property IOSTANDARD LVCMOS33 [get_ports hdmi_rstn]
+set_property IOSTANDARD LVCMOS33 [get_ports {vid_data[*]}]
 
 # eeprom
 ## eeprom wp: (lo: wr; hi: ro)
-set_property PACKAGE_PIN AB14 [get_ports {gpio_tri_io[19]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {gpio_tri_io[19]}]
+set_property PACKAGE_PIN AB14 [get_ports {gpio_tri_io[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {gpio_tri_io[0]}]
 ## eeprom sda
 set_property PACKAGE_PIN W14 [get_ports ps_iic_0_sda_io]
 set_property IOSTANDARD LVCMOS33 [get_ports ps_iic_0_sda_io]
@@ -108,85 +101,90 @@ set_property PACKAGE_PIN AB15 [get_ports ps_iic_0_scl_io]
 set_property IOSTANDARD LVCMOS33 [get_ports ps_iic_0_scl_io]
 
 # relay_ctrl
-set_property PACKAGE_PIN AG11 [get_ports {gpio_tri_io[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {gpio_tri_io[0]}]
-
-# HDMII_SYSRSTN
-set_property PACKAGE_PIN G15 [get_ports {gpio_tri_io[1]}]
+set_property PACKAGE_PIN AG11 [get_ports {gpio_tri_io[1]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {gpio_tri_io[1]}]
 
-# PL_LOCK_LED
-set_property PACKAGE_PIN AF11 [get_ports {gpio_tri_io[2]}]
+# HDMI_SYSRSTN
+set_property PACKAGE_PIN G15 [get_ports {gpio_tri_io[2]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {gpio_tri_io[2]}]
+
+# PL_LOCK_LED
+set_property PACKAGE_PIN AF11 [get_ports {gpio_tri_io[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {gpio_tri_io[3]}]
 
 
 #gpio for maxim chips
 
 #chi0_lock
-set_property PACKAGE_PIN F2 [get_ports {gpio_tri_io[3]}]
-set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[3]}]
-
-#chip0_mfp8
-set_property PACKAGE_PIN E2 [get_ports {gpio_tri_io[4]}]
+set_property PACKAGE_PIN F2 [get_ports {gpio_tri_io[4]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[4]}]
 
-#chip0_pwdnb
-set_property PACKAGE_PIN G1 [get_ports {gpio_tri_io[5]}]
+#chip0_mfp8
+set_property PACKAGE_PIN E2 [get_ports {gpio_tri_io[5]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[5]}]
 
-#chip0_pclk
-set_property PACKAGE_PIN F1 [get_ports {gpio_tri_io[6]}]
+#chip0_pwdnb
+set_property PACKAGE_PIN G1 [get_ports {gpio_tri_io[6]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[6]}]
+
+#chip0_pclk
+set_property PACKAGE_PIN F1 [get_ports {gpio_tri_io[7]}]
+set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[7]}]
 
 
 #chip1_lock
-set_property PACKAGE_PIN G8 [get_ports {gpio_tri_io[7]}]
-set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[7]}]
-
-#chip1_mfp8
-set_property PACKAGE_PIN F7 [get_ports {gpio_tri_io[8]}]
+set_property PACKAGE_PIN G8 [get_ports {gpio_tri_io[8]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[8]}]
 
-#chip1_pwdnb
-set_property PACKAGE_PIN G6 [get_ports {gpio_tri_io[9]}]
+#chip1_mfp8
+set_property PACKAGE_PIN F7 [get_ports {gpio_tri_io[9]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[9]}]
 
-#chip1_pclk
-set_property PACKAGE_PIN F6 [get_ports {gpio_tri_io[10]}]
+#chip1_pwdnb
+set_property PACKAGE_PIN G6 [get_ports {gpio_tri_io[10]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[10]}]
+
+#chip1_pclk
+set_property PACKAGE_PIN F6 [get_ports {gpio_tri_io[11]}]
+set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[11]}]
 
 
 #chip2_lock
-set_property PACKAGE_PIN D4 [get_ports {gpio_tri_io[11]}]
-set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[11]}]
-
-#chip2_mfp8
-set_property PACKAGE_PIN C4 [get_ports {gpio_tri_io[12]}]
+set_property PACKAGE_PIN D4 [get_ports {gpio_tri_io[12]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[12]}]
 
-#chip2_pwdnb
-set_property PACKAGE_PIN C3 [get_ports {gpio_tri_io[13]}]
+#chip2_mfp8
+set_property PACKAGE_PIN C4 [get_ports {gpio_tri_io[13]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[13]}]
 
-#chip2_pclk
-set_property PACKAGE_PIN C2 [get_ports {gpio_tri_io[14]}]
+#chip2_pwdnb
+set_property PACKAGE_PIN C3 [get_ports {gpio_tri_io[14]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[14]}]
 
-#chip3_lock
-set_property PACKAGE_PIN A2 [get_ports {gpio_tri_io[15]}]
+#chip2_pclk
+set_property PACKAGE_PIN C2 [get_ports {gpio_tri_io[15]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[15]}]
 
 #chip3_lock
-set_property PACKAGE_PIN B5 [get_ports {gpio_tri_io[16]}]
+set_property PACKAGE_PIN A2 [get_ports {gpio_tri_io[16]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[16]}]
 
-#chip3_errb
-set_property PACKAGE_PIN A1 [get_ports {gpio_tri_io[17]}]
+#chip3_lock
+set_property PACKAGE_PIN B5 [get_ports {gpio_tri_io[17]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[17]}]
 
-#chip3_mfp6
-set_property PACKAGE_PIN A5 [get_ports {gpio_tri_io[18]}]
+#chip3_errb
+set_property PACKAGE_PIN A1 [get_ports {gpio_tri_io[18]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[18]}]
+
+#chip3_mfp6
+set_property PACKAGE_PIN A5 [get_ports {gpio_tri_io[19]}]
+set_property IOSTANDARD LVCMOS18 [get_ports {gpio_tri_io[19]}]
+
+# HDMI_INT
+set_property PACKAGE_PIN G14 [get_ports gpio_tri_io[20]]
+set_property IOSTANDARD LVCMOS33 [get_ports gpio_tri_io[20]]
+
 
 #
 #set_property PACKAGE_PIN F8 [get_ports hdmi_tx0_clk_p]
