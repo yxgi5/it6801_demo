@@ -3,7 +3,7 @@
 #source /opt/Xilinx/Vivado/xxx/settings64.sh
 source setenv.sh
 
-exit | source clean.sh -b -d
+exit | source clean.sh -b -w -d
 
 xsct create_SW_proj.tcl
 

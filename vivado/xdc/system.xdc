@@ -207,6 +207,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports gpio_tri_io[20]]
 # vivado tcl console input
 # set_param drc.disableLUTOverUtilError 1
 
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets vid_clk_IBUF_inst/O]
 set_false_path -from [get_clocks clk_pl_0] -to [get_clocks clk_pl_2]
 
 create_debug_core u_ila_0 ila

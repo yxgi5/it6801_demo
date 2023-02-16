@@ -549,7 +549,8 @@ proc create_root_design { parentCell } {
   # Create instance: I2C_SLAVE_0, and set properties
   set I2C_SLAVE_0 [ create_bd_cell -type ip -vlnv user.org:user:I2C_SLAVE:1.0 I2C_SLAVE_0 ]
   set_property -dict [ list \
-   CONFIG.I2C_SLAVE_ADDR {"11011000"} \
+   CONFIG.I2C_SLAVE_ADDR {"01101100"} \
+   CONFIG.I2C_SLAVE_REG_MODE {1} \
  ] $I2C_SLAVE_0
 
   # Create instance: axi_gpio_0, and set properties
@@ -627,8 +628,8 @@ proc create_root_design { parentCell } {
    CONFIG.M_TDATA_NUM_BYTES {2} \
    CONFIG.S_TDATA_NUM_BYTES {1} \
    CONFIG.TDATA_REMAP {4'b0000,tdata[7:0],4'b0000} \
-   CONFIG.TKEEP_REMAP {2'b11} \
-   CONFIG.TSTRB_REMAP {2'b11} \
+   #CONFIG.TKEEP_REMAP {2'b11} \
+   #CONFIG.TSTRB_REMAP {2'b11} \
  ] $axis_subset_converter_2
 
   # Create instance: axis_switch_0, and set properties

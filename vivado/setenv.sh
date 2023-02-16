@@ -5,10 +5,11 @@ echo -e "\033[42;31mScript ver 0.1.001 \nMake sure the env path is correct befor
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     #echo "OSTYPE = $OSTYPE"
     source /opt/Xilinx/Vivado/2020.1/settings64.sh
-else
-	# tested with msys2
+#else
     #echo "OSTYPE = $OSTYPE"
-    source 'D:\Xilinx\Vivado\2020.1\settings64.sh'
+    #source 'D:\Xilinx\Vivado\2020.1\settings64.sh'
+    #echo "setenv_bash.bat" | cmd 
+    #exit
 fi
 #vivado -mode tcl
 

@@ -65,3 +65,20 @@ set_param drc.disableLUTOverUtilError 1
 
 
 
+# clock bufg 问题处理
+```
+[Place 30-675] Sub-optimal placement for a global clock-capable IO pin and BUFG pair.If this sub optimal condition is acceptable for this design, you may use the CLOCK_DEDICATED_ROUTE constraint in the .xdc file to demote this message to a WARNING. However, the use of this override is highly discouraged. These examples can be used directly in the .xdc file to override this clock rule.
+	< set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets vid_clk_IBUF_inst/O] >
+
+	vid_clk_IBUF_inst/IBUFCTRL_INST (IBUFCTRL.O) is locked to IOB_X0Y141
+	 vid_clk_IBUF_BUFG_inst (BUFGCE.I) is provisionally placed by clockplacer on BUFGCE_X0Y22
+
+	The above error could possibly be related to other connected instances. Following is a list of 
+	all the related clock rules and their respective instances.
+
+	Clock Rule: rule_bufgce_bufg_conflict
+	Status: PASS 
+	Rule Description: Only one of the 2 available sites (BUFGCE or BUFGCE_DIV/BUFGCTRL) in a pair can be
+	used at the same time
+	 and vid_clk_IBUF_BUFG_inst (BUFGCE.O) is provisionally placed by clockplacer on BUFGCE_X0Y22
+```

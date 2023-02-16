@@ -37,6 +37,8 @@ Module.symvers
 *.dwo
 *.jou
 *.log
+*.dmp
+*.str
 stats.txt
 *.7z
 *.rar
