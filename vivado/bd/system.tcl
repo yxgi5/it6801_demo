@@ -724,7 +724,7 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.MAXIMUM_DATA_WIDTH {12} \
    CONFIG.MAXIMUM_NUMBER_OF_COLUMNS {1920} \
-   CONFIG.MAXIMUM_NUMBER_OF_ROWS {1080} \
+   CONFIG.MAXIMUM_NUMBER_OF_ROWS {1280} \
  ] $rgb2bayer_0
 
   # Create instance: rgb2bayer_1, and set properties
@@ -732,7 +732,7 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.MAXIMUM_DATA_WIDTH {8} \
    CONFIG.MAXIMUM_NUMBER_OF_COLUMNS {1920} \
-   CONFIG.MAXIMUM_NUMBER_OF_ROWS {1080} \
+   CONFIG.MAXIMUM_NUMBER_OF_ROWS {1280} \
  ] $rgb2bayer_1
 
   # Create instance: rst_ps8_0_300M, and set properties
