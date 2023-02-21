@@ -5,7 +5,7 @@
 #include "xil_types.h"
 #include "xstatus.h"
 #include "xcsi2txss.h"
-//#include "xaxis_switch.h"
+#include "xaxis_switch.h"
 #include "clk_wiz/clk_wiz.h"
 #include "xvidc.h"
 #include "tpg/tpg.h"
@@ -37,7 +37,7 @@
 #define FRAME_BUFFER_2          FRAME_BUFFER_BASE_ADDR + FRAME_BUFFER_SIZE0
 #define FRAME_BUFFER_3          FRAME_BUFFER_BASE_ADDR + (FRAME_BUFFER_SIZE0*2)
 
-//XAxis_Switch AxisSwitch0;
+XAxis_Switch AxisSwitch0;
 //XAxis_Switch AxisSwitch1;
 //XAxis_Switch AxisSwitch2;
 
@@ -101,6 +101,75 @@ struct reginfo
 #define SEQUENCE_PROPERTY    0xFFFD
 #define SEQUENCE_WAIT_MS     0xFFFE
 #define SEQUENCE_END	     0xFFFF
+
+unsigned char IT6801_HDMI_INIT_TABLE[][3] =
+{
+	{0x0f, 0x03, 0x00},	// Change Bank 0
+	{0x10, 0xff, 0x08},		// default:0x00,[3]1:Register reset
+	{0x10, 0xff, 0x17},		// default:0x00,[4]1:Auto Video Reset [2]1:Interrupt Reset [1]1:Audio Reset [0]1:Video Reset
+	{0x11, 0xff, 0x1f},		// default:0x00,Port0 [4]1:EQ Reset [3]1:CLKD5 Reset [2]1:CDR Reset [1]1:HDCP Reset [0]1:All logic Reset
+	{0x18, 0xff, 0x1f},		// default:0x00,Port1 相关
+	{0x12, 0xff, 0xf8},		// default:0x00,MHL 相关
+	{0x10, 0xff, 0x10},		// default:0x00,[4]1:Auto Video Reset
+	{0x11, 0xff, 0xa0},		// default:0x00,MHL 相关
+	{0x18, 0xff, 0xa0},		// default:0x00,Port1 相关
+	{0x12, 0xff, 0x00},		// default:0x00,MHL 相关
+	{0x0f, 0x03, 0x01},	// Change Bank 1
+	{0xc0, 0x80, 0x00},		// default:0x80,[7]0:手册中无描述信息，意义不明
+	{0x0f, 0x03, 0x00},	// Change Bank 0
+	{0x17, 0xc0, 0x80},		// default:0xC0,Port0 [7]1:Inverse Port 0 input HCLK
+	{0x1e, 0xc0, 0x00},		// default:0xC0,Port1 相关
+	{0x0e, 0xff, 0xff},		// default:0xFE,[0]1:Enable RCLK for CEC
+	{0x86, 0xff, 0xc9},		/* SW programmable I2C Slave Address of CEC block:0xC8 */
+	{0x16, 0x08, 0x08},		// default:0x80,Port0 [3]1: Enable CLKD5 auto power down
+	{0x1d, 0x08, 0x08},		// default:0x00,Port1 相关
+	{0x2b, 0x07, 0x07},		// default:0x00,Port0 FixTek3D 相关(3D没有基础，看不明白手册里的描述)
+	{0x31, 0xff, 0x2c},		// default:0x39
+	{0x34, 0xff, 0xe1},		/* SW programmable I2C Slave Address of MHL block:0xE0 */
+	{0x35, 0x0c, 0x01},		// default:0x03
+	{0x54, 0x0c, 0x09},		// default:0x10,[1:0]01:RCLK Frequency select(掩码是 0x0c 属实没看懂 0x09 也没看懂，手册上 [3:2] 明明是 Reserved)
+	{0x6a, 0xff, 0x81},		// default:0x83,Decide which kind of packet on Gene
+	{0x74, 0xff, 0xa0},		// default:0x20,[7]1:Enable i2s and SPDIFoutput [5]1:Disable false DE output
+	{0x50, 0x1f, 0x12},		// default 0xbf,[4]1:Invert output DCLK and DCLK DELAY 2 Step
+	{0x65, 0x0c, 0x58},		// default:0x00,[6]1:embeded sync [5:4]01:YUV422 [3:2]10:12bits
+	{0x7a, 0x80, 0x80},		// default:0xD0,[7]1:enable audio B Frame Swap Interupt
+	{0x85, 0x02, 0x02},		// default:0x0C,[1]1: gating avmute in video detect module
+	{0xc0, 0x03, 0x00},		// default:0x07
+	{0x87, 0xff, 0xa9},		/* SW programmable I2C address of EDID RAM:0xA8 */
+	{0x71, 0x08, 0x00},		// default:0x08,[3]0:must clear to 0
+	{0x37, 0xff, 0x88},		// default:0x80,Port0 [7:0]0x88:must set to 0xA6(但是手册里给的初始化表设置的却是0x88)
+	{0x4d, 0xff, 0x88},		// default:0x80,Port1 相关
+	{0x67, 0x80, 0x00},		// default:0x80,[7]0:disable HW CSCSel
+	{0x7a, 0x70, 0x70},		// default:0xD0
+	{0x7e, 0x40, 0x00},		// default:0x00
+	{0x52, 0x20, 0x20},		// default:0x20,[5]1:for disable Auto video MUTE
+	{0x53, 0xc0, 0x32},		// default:0x00,QE16-QE23、 QE28-QE35 有效
+	{0x58, 0xff, 0xab},		// Video output driving strength
+	{0x59, 0xff, 0xaa},		// Audio output driving strength
+	{0x0f, 0x03, 0x01},	// Change bank 1
+	{0xbc, 0xff, 0x06},		// 仅出现在初始化表里的寄存器，没有在手册的其他位置出现，意义不明
+	{0xb5, 0x03, 0x03},		// 同上
+	{0xb6, 0x07, 0x00},		// 同上
+	{0xb1, 0xff, 0x20},		// default:0x80,[5]1:software overwrite IPLL
+	{0xb2, 0xff, 0x01},		// default:0x04,[1]1:increase filter resistance
+	{0x0f, 0x03, 0x00},	// Change bank 0
+	{0x25, 0xff, 0x1f},		// Default EQ Value
+	{0x3d, 0xff, 0x1f},		// Default EQ Value
+	{0x27, 0xff, 0x1f},		// Default EQ Value
+	{0x28, 0xff, 0x1f},		// Default EQ Value
+	{0x29, 0xff, 0x1f},		// Default EQ Value
+	{0x3f, 0xff, 0x1f},		// Default EQ Value
+	{0x40, 0xff, 0x1f},		// Default EQ Value
+	{0x41, 0xff, 0x1f},		// Default EQ Value
+	{0x22, 0xff, 0x00},		// default:0x00
+	{0x26, 0xff, 0x00},		// default:0x00
+	{0x3a, 0xff, 0x00},		// default:0x00,Port1 相关
+	{0x3e, 0xff, 0x00},		// default:0x00,Port1 相关
+	{0x20, 0x7f, 0x3f},		// default:0x00,[5:4]11:R_CS 初始化 [3:2]11:G_CS 初始化 [1:0]11:B_CS 初始化
+	{0x38, 0x7f, 0x3f},		// default:0x00,Port1 相关
+	{0xff, 0xff, 0xff}
+};
+
 
 struct reginfo cfg_gmsl[] =
 {
@@ -183,7 +252,7 @@ struct reginfo cfg_gmsl_717F[] =
 	{0x80, SEQUENCE_END, 0x00}
 };
 
-#if 0
+#if 1
 int AxisSwitch(u16 DeviceId, XAxis_Switch * pAxisSwitch, u8 MiIndex, u8 SiIndex)
 {
     XAxis_Switch_Config *Config;
@@ -235,15 +304,15 @@ int AxisSwitch(u16 DeviceId, XAxis_Switch * pAxisSwitch, u8 MiIndex, u8 SiIndex)
 void axis_switch_cfg(void)
 {
     u32 Status;
-
+    AxisSwitch(XPAR_AXIS_SWITCH_0_DEVICE_ID, &AxisSwitch0, 0, 0);
 //    AxisSwitch(XPAR_AXIS_SWITCH_0_DEVICE_ID, &AxisSwitch0, 0, 1); // tpg
-    AxisSwitch(XPAR_AXIS_SWITCH_0_DEVICE_ID, &AxisSwitch0, 0, 0); // csi-rx
+//    AxisSwitch(XPAR_AXIS_SWITCH_0_DEVICE_ID, &AxisSwitch0, 0, 0); // csi-rx
 
 //    AxisSwitch(XPAR_AXIS_SWITCH_1_DEVICE_ID, &AxisSwitch1, 0, 1); // tpg
-	AxisSwitch(XPAR_AXIS_SWITCH_1_DEVICE_ID, &AxisSwitch1, 0, 0); // csi-rx
+//	AxisSwitch(XPAR_AXIS_SWITCH_1_DEVICE_ID, &AxisSwitch1, 0, 0); // csi-rx
 
 //    AxisSwitch(XPAR_AXIS_SWITCH_2_DEVICE_ID, &AxisSwitch2, 0, 1); // tpg
-	AxisSwitch(XPAR_AXIS_SWITCH_2_DEVICE_ID, &AxisSwitch2, 0, 0); // csi-rx
+//	AxisSwitch(XPAR_AXIS_SWITCH_2_DEVICE_ID, &AxisSwitch2, 0, 0); // csi-rx
 }
 #endif
 
@@ -393,6 +462,110 @@ void max929x_write_array(i2c_no i2c, struct reginfo *regarray)
     }
 }
 
+void hdmirxwr(unsigned char RegAddr, unsigned char ucdata)
+{
+	int ret32;
+
+	ret32 = xgpio_i2c_reg8_write(I2C_NO_0, 0x90>>1, RegAddr, ucdata, STRETCH_OFF);
+}
+
+unsigned char hdmirxrd(unsigned char RegAddr)
+{
+	int ret32;
+	u8 ret8=0;
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0x90>>1, RegAddr, &ret8, STRETCH_OFF);
+
+	return ret8;
+}
+
+void hdmirxset(unsigned char RegAddr, unsigned char mask, unsigned char ucdata)
+{
+	int ret32;
+//	unsigned char send_buf[4] = {0};
+	unsigned char send_byte=0;
+
+//	send_buf[0] = RegAddr;
+//	send_buf[1] = hdmirxrd(RegAddr);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0x90>>1, RegAddr, &send_byte, STRETCH_OFF);
+					// 		保留不用清除的位			  更新清除的位
+//	send_buf[1] = (send_buf[1] & ((~mask) & 0xFF)) + (mask & ucdata);
+	//printf("send_reg_addr is %x, send_reg_value is %x\n\r", send_buf[0], send_buf[1]);
+	send_byte=(send_byte & ((~mask) & 0xFF)) + (mask & ucdata);
+
+//	write(fd_i2c, send_buf, 2);
+	ret32 = xgpio_i2c_reg8_write(I2C_NO_0, 0x90>>1, RegAddr, send_byte, STRETCH_OFF);
+}
+
+
+void chgbank( int bank )
+{
+	switch( bank ) {
+	case 0 :
+		 hdmirxset(0x0F, 0x03, 0x00);
+		 break;
+	case 1 :
+		 hdmirxset(0x0F, 0x03, 0x01);
+		 break;
+	case 2 :
+		 hdmirxset(0x0F, 0x03, 0x02);
+		 break;
+	case 3:
+		 hdmirxset(0x0F, 0x03, 0x03);
+		 break;
+	default :
+		 break;
+	}
+}
+
+void HPDCtrl(unsigned char ucEnable)
+{
+	if(ucEnable == 0)
+	{
+		if((hdmirxrd(0x0A) & 0x01))
+		{
+			chgbank(1);
+			hdmirxset(0xB0, 0x03, 0x01); //clear port 0 HPD=1 for EDID update
+			hdmirxrd(0xB0);
+			chgbank(0);
+		}
+		else
+		{
+			chgbank(1);
+			hdmirxset(0xB0, 0x03, 0x00); //set port 0 Tri-State
+			hdmirxrd(0xB0);
+			chgbank(0);
+		}
+	}
+	else
+	{
+		if((hdmirxrd(0x0A) & 0x01))
+		{
+			chgbank(1);
+			hdmirxset(0xB0, 0x03, 0x03); //set port 0 HPD=1
+			hdmirxrd(0xB0);
+			chgbank(0);
+		}
+		else
+		{
+			chgbank(1);
+			hdmirxset(0xB0, 0x03, 0x00); //set port 0 Tri-State
+			hdmirxrd(0xB0);
+			chgbank(0);
+		}
+	}
+}
+
+void hdimrx_write_init(unsigned char (*init_table)[3])
+{
+    int i = 0;
+
+    while(init_table[i][0] != 0xff)
+    {
+    	hdmirxset(init_table[i][0], init_table[i][1], init_table[i][2]);
+        i++;
+    }
+}
+
 int XGpioSetup(XGpio *InstancePtr, u16 DeviceId)
 {
 	int Status ;
@@ -439,9 +612,152 @@ u32 Csi2TxSs_Init(u32 DeviceId)
 }
 #endif
 
+void it6801_InterruptHandler(void)
+{
+	unsigned char Reg05h;
+    unsigned char Reg06h;
+    unsigned char Reg07h;
+    unsigned char Reg08h;
+    unsigned char Reg09h;
+    unsigned char Reg0Ah;
+//	unsigned char Reg0Bh;
+    unsigned char RegD0h;
+
+	chgbank(0);
+	Reg05h = hdmirxrd(0x05);
+	Reg06h = hdmirxrd(0x06);
+	Reg07h = hdmirxrd(0x07);
+	Reg08h = hdmirxrd(0x08);
+	Reg09h = hdmirxrd(0x09);
+	Reg0Ah = hdmirxrd(0x0A);
+//	Reg0Bh = hdmirxrd(0x0B);
+	RegD0h = hdmirxrd(0xD0);
+
+	hdmirxwr(0x05, Reg05h);
+	hdmirxwr(0x06, Reg06h);
+	hdmirxwr(0x07, Reg07h);
+	hdmirxwr(0x08, Reg08h);
+	hdmirxwr(0x09, Reg09h);
+	hdmirxwr(0xD0, RegD0h);
+#if 0
+	if(Reg05h)
+	{
+		printf("Reg05 = 0x%02X \r\n", Reg05h);
+
+		if( Reg05h & 0x80 )
+		{
+			printf("#### Port 0 HDCP Off Detected ###\r\n");
+		}
+		if(Reg05h & 0x40)
+		{
+			printf("#### Port 0 ECC Error ####\r\n");
+			//TODO: hdmirx_INT_P0_ECC
+		}
+		if(Reg05h & 0x20)
+		{
+			printf("#### Port 0 HDMI/DVI Mode change ####\r\n");
+			//TODO: if(CLKCheck(0)) ; hdmirx_INT_HDMIMode_Chg(it6802,0);
+		}
+		if( Reg05h & 0x08 )
+		{
+			printf("#### Port 0 HDCP Authentication Start ###\r\n");
+			//TODO:
+
+			if( Reg0Ah & 0x40)
+			{
+				//TODO:
+			}
+		}
+		if( Reg05h & 0x10 )
+		{
+			printf("#### Port 0 HDCP Authentication Done ####\r\n");
+			if( Reg0Ah & 0x40 )
+			{
+				//TODO:
+			}
+		}
+		if( Reg05h & 0x04 )
+		{
+			printf("#### Port 0 Input Clock Change Detect ####\r\n");
+		}
+		if( Reg05h & 0x02 )
+		{
+			printf("#### Port 0 Rx CKOn Detect ####\r\n");
+			// TODO:
+		}
+		if( Reg05h & 0x01 )
+		{
+			printf("#### Port 0 Power 5V change ####\r\n");
+			// TODO: hdmirx_INT_5V_Pwr_Chg
+		}
+	}
+	if(Reg06h)
+	{
+		// TODO:
+	}
+	if(Reg07h)
+	{
+		// TODO:
+	}
+	if(Reg08h)
+	{
+		// TODO:
+	}
+	if(Reg09h)
+	{
+		// TODO:
+	}
+	if(RegD0h)
+	{
+		// TODO:
+	}
+#endif
+}
+
+static void VideoOutputConfigure()
+{
+	chgbank(0);
+	hdmirxwr(0x51, 0x00);
+	hdmirxwr(0x65, 0x00);
+#if 0
+	// Color Space Matrix Set
+	chgbank(1);
+	hdmirxwr(0x70, 0x10);		// YUV601:0x10(0~255)	0x00(16~235)		YUV709:0x10(0~255)	0x00(16~235)
+	hdmirxwr(0x71, 0x80);		// YUV601:0x80(0~255)	0x80(16~235)		YUV709:0x80(0~255)	0x80(16~235)
+	hdmirxwr(0x72, 0x10);		// YUV601:0x10(0~255)	0x10(16~235)		YUV709:0x10(0~255)	0x10(16~235)
+	hdmirxwr(0x73, 0xe4);		// YUV601:0x09(0~255)	0xb2(16~235)		YUV709:0xe4(0~255)	0xb8(16~235)
+	hdmirxwr(0x74, 0x04);		// YUV601:0x04(0~255)	0x04(16~235)		YUV709:0x04(0~255)	0x05(16~235)
+	hdmirxwr(0x75, 0x77);		// YUV601:0x0e(0~255)	0x65(16~235)		YUV709:0x77(0~255)	0xb4(16~235)
+	hdmirxwr(0x76, 0x01);		// YUV601:0x02(0~255)	0x02(16~235)		YUV709:0x01(0~255)	0x01(16~235)
+	hdmirxwr(0x77, 0x7f);		// YUV601:0xc9(0~255)	0xe9(16~235)		YUV709:0x7f(0~255)	0x94(16~235)
+	hdmirxwr(0x78, 0x00);		// YUV601:0x00(0~255)	0x00(16~235)		YUV709:0x00(0~255)	0x00(16~235)
+	hdmirxwr(0x79, 0xd0);		// YUV601:0x0f(0~255)	0x93(16~235)		YUV709:0xd0(0~255)	0x4a(16~235)
+	hdmirxwr(0x7a, 0x3c);		// YUV601:0x3d(0~255)	0x3c(16~235)		YUV709:0x3c(0~255)	0x3c(16~235)
+	hdmirxwr(0x7b, 0x83);		// YUV601:0x84(0~255)	0x18(16~235)		YUV709:0x83(0~255)	0x17(16~235)
+	hdmirxwr(0x7c, 0x03);		// YUV601:0x03(0~255)	0x04(16~235)		YUV709:0x03(0~255)	0x04(16~235)
+	hdmirxwr(0x7d, 0xad);		// YUV601:0x6d(0~255)	0x55(16~235)		YUV709:0xad(0~255)	0x9f(16~235)
+	hdmirxwr(0x7e, 0x3f);		// YUV601:0x3f(0~255)	0x3f(16~235)		YUV709:0x3f(0~255)	0x3f(16~235)
+	hdmirxwr(0x7f, 0x48);		// YUV601:0xab(0~255)	0x49(16~235)		YUV709:0x48(0~255)	0xd9(16~235)
+	hdmirxwr(0x80, 0x3d);		// YUV601:0x3d(0~255)	0x3d(16~235)		YUV709:0x3d(0~255)	0x3c(16~235)
+	hdmirxwr(0x81, 0x32);		// YUV601:0xd1(0~255)	0x9f(16~235)		YUV709:0x32(0~255)	0x10(16~235)
+	hdmirxwr(0x82, 0x3f);		// YUV601:0x3e(0~255)	0x3e(16~235)		YUV709:0x3f(0~255)	0x3f(16~235)
+	hdmirxwr(0x83, 0x84);		// YUV601:0x84(0~255)	0x18(16~235)		YUV709:0x84(0~255)	0x17(16~235)
+	hdmirxwr(0x84, 0x03);		// YUV601:0x03(0~255)	0x04(16~235)		YUV709:0x03(0~255)	0x04(16~235)
+	chgbank(0);
+#endif
+	// 复位
+	//hdmirxwr(0x64, 0x01);
+	//hdmirxwr(0x64, 0x00);
+
+	// QE16-QE23、QE28-QE35 有效
+	//hdmirxwr(0x53, 0x32);
+	hdmirxwr(0x53, 0x00);
+}
+
 int main()
 {
     u32 ret32;
+    u8 ret8=0;
 
     init_platform();
 
@@ -473,16 +789,67 @@ int main()
 //	XGpio_DiscreteWrite(&XGpioOutput, 2, (VIDEO_COLUMNS*10/8)<<16); // WC RAW10
 //	XGpio_DiscreteWrite(&XGpioOutput, 2, (1920*16/8)<<16); // WC YUV422_8bit
 
+
+#if 1
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0x90>>1, 0x00, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0x90>>1, 0x01, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0x90>>1, 0x02, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0x90>>1, 0x03, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0x90>>1, 0x04, &ret8, STRETCH_OFF);
+
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xC0>>1, 0x00, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xC0>>1, 0x01, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xC0>>1, 0x02, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xC0>>1, 0x03, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xC0>>1, 0x04, &ret8, STRETCH_OFF);
+
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xCA>>1, 0x00, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xCA>>1, 0x01, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xCA>>1, 0x02, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xCA>>1, 0x03, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xCA>>1, 0x04, &ret8, STRETCH_OFF);
+
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xA8>>1, 0x00, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xA8>>1, 0x01, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xA8>>1, 0x02, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xA8>>1, 0x03, &ret8, STRETCH_OFF);
+	ret32 = xgpio_i2c_reg8_read(I2C_NO_0, 0xA8>>1, 0x04, &ret8, STRETCH_OFF);
+
+	HPDCtrl(0);
+	chgbank(1);
+	hdmirxrd(0xB0); //set port 0 Tri-State
+	chgbank(0);
+
+	usleep(1000);
+
+	hdimrx_write_init(IT6801_HDMI_INIT_TABLE);
+
+	hdmirxwr(0xc0, 0x44);
+
+	hdmirxset(0x51, 0x01, 0x00);
+
+	chgbank(1);
+	hdmirxrd(0xB0); //set port 0 Tri-State
+	chgbank(0);
+
+	VideoOutputConfigure();
+
+	HPDCtrl(1);
+
+	chgbank(1);
+	hdmirxrd(0xB0); //set port 0 Tri-State
+	chgbank(0);
+#endif
+
 #if 1
     // MAX96717F config
-    u8 ret8=0;
     ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x80>>1, 0x0000, &ret8, STRETCH_ON);
     ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x80>>1, 0x0001, &ret8, STRETCH_ON);
 
     max929x_write_array(I2C_NO_1, cfg_gmsl_717F);
 #endif
 
-//    axis_switch_cfg();
+    axis_switch_cfg();
     clkwiz_vtc_cfg();
     tpg_config();
 //    clear_display();
@@ -497,6 +864,8 @@ int main()
     while(1)
     {
 //    	ret32 = xgpio_i2c_reg16_read(I2C_NO_0, 0x80>>1, 0x0000, &ret8, STRETCH_ON);
+    	usleep(150000);
+		it6801_InterruptHandler();
     }
     /* never reached */
     cleanup_platform();
