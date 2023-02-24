@@ -44,6 +44,7 @@ static FATFS fatfs;
 #define FRAME_BUFFER_4          FRAME_BUFFER_BASE_ADDR + (FRAME_BUFFER_SIZE0*3)
 #define FRAME_BUFFER_5          FRAME_BUFFER_BASE_ADDR + (FRAME_BUFFER_SIZE0*4)
 #define FRAME_BUFFER_6          FRAME_BUFFER_BASE_ADDR + (FRAME_BUFFER_SIZE0*5)
+#define FRAME_BUFFER_7          FRAME_BUFFER_BASE_ADDR + (FRAME_BUFFER_SIZE0*6)
 
 XAxis_Switch AxisSwitch0;
 //XAxis_Switch AxisSwitch1;
@@ -511,6 +512,75 @@ void vdma_config_64_tf(void)
     Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x50, height1);
 
     xil_printf("VDMA1 started!\r\n");
+    /* End of VDMA Configuration */
+}
+
+void vdma_config_64_vin(void)
+{
+    /* Start of VDMA Configuration */
+    u32 bytePerPixels = 3;
+
+//    int offset0 = 0; // (y*w+x)*Bpp
+//    u32 stride0 = 1920;
+//    u32 width0 = 640;
+//    u32 height0 = 480;
+//
+//    int offset1 = 0; // (y*w+x)*Bpp
+//    //offset1 = 960; // shift left
+//    //offset1 = -960; // shift right
+//    u32 stride1 = 1920;  // crop keeps write Stride
+//    u32 width1 = 1920;
+//    u32 height1 = 1080;
+
+    int offset0 = 0; // (y*w+x)*Bpp
+    int offset1 = 0; // (y*w+x)*Bpp
+
+    u32 stride0 = 1920;
+    u32 width0 = 1920;
+    u32 height0 = 1280;
+    u32 stride1 = 1920;  // crop keeps write Stride
+    u32 width1 = 1920;
+    u32 height1 = 1280;
+
+    /* Configure the Write interface (S2MM)*/
+    // S2MM Control Register
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x30, 0x8B);
+    //S2MM Start Address 1
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0xAC, FRAME_BUFFER_5 + offset0);
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0xB0, 0);
+    //S2MM Start Address 2
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0xB4, FRAME_BUFFER_6 + offset0);
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0xB8, 0);
+    //S2MM Start Address 3
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0xBC, FRAME_BUFFER_7 + offset0);
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0xC0, 0);
+    //S2MM Frame delay / Stride register
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0xA8, stride0*bytePerPixels);
+    // S2MM HSIZE register
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0xA4, width0*bytePerPixels);
+    // S2MM VSIZE register
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0xA0, height0);
+
+    /* Configure the Read interface (MM2S)*/
+    // MM2S Control Register
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x00, 0x8B);
+    // MM2S Start Address 1
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x5C, FRAME_BUFFER_5 + offset1);
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x60, 0);
+    // MM2S Start Address 2
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x64, FRAME_BUFFER_6 + offset1);
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x68, 0);
+    // MM2S Start Address 3
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x6C, FRAME_BUFFER_7 + offset1);
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x70, 0);
+    // MM2S Frame delay / Stride register
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x58, stride1*bytePerPixels);
+    // MM2S HSIZE register
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x54, width1*bytePerPixels);
+    // MM2S VSIZE register
+    Xil_Out32(XPAR_AXI_VDMA_2_BASEADDR + 0x50, height1);
+
+    xil_printf("VDMA2 started!\r\n");
     /* End of VDMA Configuration */
 }
 
@@ -1335,6 +1405,7 @@ int main()
 	bmp_read("1:/p0.bmp",FRAME_BUFFER_4, 1920*3, &fil);
 	Xil_DCacheFlushRange((unsigned int) FRAME_BUFFER_4, 1920*1280*3);
 
+	vdma_config_64_vin();
     vdma_config_64_tf();
     vdma_config_64();
 
