@@ -1,6 +1,9 @@
 # 717 vs 717F
 717比717F牛逼一些，可以6Gbps，717F只有3Gbps
 
+# jpg to bmp convert
+using gimp, export as bmp, do not include color space
+
 
 # block design
 

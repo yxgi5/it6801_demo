@@ -21,7 +21,11 @@
 #include "bitmanip.h"
 #include "trace_zzg_debug.h"
 #include "config.h"
-
+#include "bmp/bmp.h"
+#include "ff.h"
+static FIL fil;		/* File object */
+static FATFS fatfs;
+#define MAX_FLASH_LEN   32*1024*1024
 #define CLK_LOCK            1
 
 //#define FRAME_BUFFER_BASE_ADDR  0x10000000 // for zynq
@@ -36,6 +40,10 @@
 #define FRAME_BUFFER_1          FRAME_BUFFER_BASE_ADDR
 #define FRAME_BUFFER_2          FRAME_BUFFER_BASE_ADDR + FRAME_BUFFER_SIZE0
 #define FRAME_BUFFER_3          FRAME_BUFFER_BASE_ADDR + (FRAME_BUFFER_SIZE0*2)
+
+#define FRAME_BUFFER_4          FRAME_BUFFER_BASE_ADDR + (FRAME_BUFFER_SIZE0*3)
+#define FRAME_BUFFER_5          FRAME_BUFFER_BASE_ADDR + (FRAME_BUFFER_SIZE0*4)
+#define FRAME_BUFFER_6          FRAME_BUFFER_BASE_ADDR + (FRAME_BUFFER_SIZE0*5)
 
 XAxis_Switch AxisSwitch0;
 //XAxis_Switch AxisSwitch1;
@@ -304,9 +312,9 @@ int AxisSwitch(u16 DeviceId, XAxis_Switch * pAxisSwitch, u8 MiIndex, u8 SiIndex)
 void axis_switch_cfg(void)
 {
     u32 Status;
-    AxisSwitch(XPAR_AXIS_SWITCH_0_DEVICE_ID, &AxisSwitch0, 0, 0);
+//    AxisSwitch(XPAR_AXIS_SWITCH_0_DEVICE_ID, &AxisSwitch0, 0, 0); // vid_in
 //    AxisSwitch(XPAR_AXIS_SWITCH_0_DEVICE_ID, &AxisSwitch0, 0, 1); // tpg
-//    AxisSwitch(XPAR_AXIS_SWITCH_0_DEVICE_ID, &AxisSwitch0, 0, 0); // csi-rx
+    AxisSwitch(XPAR_AXIS_SWITCH_0_DEVICE_ID, &AxisSwitch0, 0, 2); // tf_card
 
 //    AxisSwitch(XPAR_AXIS_SWITCH_1_DEVICE_ID, &AxisSwitch1, 0, 1); // tpg
 //	AxisSwitch(XPAR_AXIS_SWITCH_1_DEVICE_ID, &AxisSwitch1, 0, 0); // csi-rx
@@ -433,7 +441,76 @@ void vdma_config_64(void)
     // MM2S VSIZE register
     Xil_Out32(XPAR_AXI_VDMA_0_BASEADDR + 0x50, height1);
 
-    xil_printf("VDMA started!\r\n");
+    xil_printf("VDMA0 started!\r\n");
+    /* End of VDMA Configuration */
+}
+
+void vdma_config_64_tf(void)
+{
+    /* Start of VDMA Configuration */
+    u32 bytePerPixels = 3;
+
+//    int offset0 = 0; // (y*w+x)*Bpp
+//    u32 stride0 = 1920;
+//    u32 width0 = 640;
+//    u32 height0 = 480;
+//
+//    int offset1 = 0; // (y*w+x)*Bpp
+//    //offset1 = 960; // shift left
+//    //offset1 = -960; // shift right
+//    u32 stride1 = 1920;  // crop keeps write Stride
+//    u32 width1 = 1920;
+//    u32 height1 = 1080;
+
+    int offset0 = 0; // (y*w+x)*Bpp
+    int offset1 = 0; // (y*w+x)*Bpp
+
+    u32 stride0 = 1920;
+    u32 width0 = 1920;
+    u32 height0 = 1280;
+    u32 stride1 = 1920;  // crop keeps write Stride
+    u32 width1 = 1920;
+    u32 height1 = 1280;
+#if 0
+    /* Configure the Write interface (S2MM)*/
+    // S2MM Control Register
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x30, 0x8B);
+    //S2MM Start Address 1
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0xAC, FRAME_BUFFER_4 + offset0);
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0xB0, 0);
+//    //S2MM Start Address 2
+//    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0xB4, FRAME_BUFFER_5 + offset0);
+//    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0xB8, 0);
+//    //S2MM Start Address 3
+//    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0xBC, FRAME_BUFFER_6 + offset0);
+//    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0xC0, 0);
+    //S2MM Frame delay / Stride register
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0xA8, stride0*bytePerPixels);
+    // S2MM HSIZE register
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0xA4, width0*bytePerPixels);
+    // S2MM VSIZE register
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0xA0, height0);
+#endif
+    /* Configure the Read interface (MM2S)*/
+    // MM2S Control Register
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x00, 0x8B);
+    // MM2S Start Address 1
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x5C, FRAME_BUFFER_4 + offset1);
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x60, 0);
+//    // MM2S Start Address 2
+//    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x64, FRAME_BUFFER_5 + offset1);
+//    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x68, 0);
+//    // MM2S Start Address 3
+//    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x6C, FRAME_BUFFER_6 + offset1);
+//    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x70, 0);
+    // MM2S Frame delay / Stride register
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x58, stride1*bytePerPixels);
+    // MM2S HSIZE register
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x54, width1*bytePerPixels);
+    // MM2S VSIZE register
+    Xil_Out32(XPAR_AXI_VDMA_1_BASEADDR + 0x50, height1);
+
+    xil_printf("VDMA1 started!\r\n");
     /* End of VDMA Configuration */
 }
 
@@ -759,6 +836,9 @@ int main()
     u32 ret32;
     u8 ret8=0;
 
+	FRESULT rc;
+	FILINFO lInfo;
+
     init_platform();
 
     XGpioSetup(&XGpioOutput, XPAR_GPIO_0_DEVICE_ID) ;
@@ -853,6 +933,23 @@ int main()
     clkwiz_vtc_cfg();
     tpg_config();
 //    clear_display();
+
+	rc = f_mount(&fatfs, "1:/", 0);
+	if (rc != FR_OK)
+	{
+		return 0 ;
+	}
+
+	rc = scan_files("1:/");
+	if (rc != FR_OK)
+	{
+		return 0 ;
+	}
+
+	bmp_read("1:/p0.bmp",FRAME_BUFFER_4, 1920*3, &fil);
+	Xil_DCacheFlushRange((unsigned int) FRAME_BUFFER_4, 1920*1280*3);
+
+    vdma_config_64_tf();
     vdma_config_64();
 
 #if 1

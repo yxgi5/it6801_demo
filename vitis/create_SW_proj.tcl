@@ -127,7 +127,7 @@ bsp config stdout axi_uartlite_0
 #bsp listparams -proc
 #bsp listparams -lib xilisf
 bsp setlib -name xilffs
-bsp config fs_interface 2
+#bsp config fs_interface 2
 #bsp setlib -name lwip211 -ver 1.3
 bsp setlib -name lwip211
 #bsp listparams -lib lwip211
