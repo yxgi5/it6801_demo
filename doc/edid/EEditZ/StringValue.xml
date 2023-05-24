@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StringValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<SV>
+		<key>DvplGiVMaj</key>
+		<value>Major (0,1…15)</value>
+	</SV>
+	<SV>
+		<key>DvplGiVMin</key>
+		<value>Minor (0,1…15)</value>
+	</SV>
+	<SV>
+		<key>DvplGiDvplSMaj</key>
+		<value>Major (0,1…15)</value>
+	</SV>
+	<SV>
+		<key>DvplGiDvplSMin</key>
+		<value>Minor (0,1…15)</value>
+	</SV>
+	<SV>
+		<key>DvplGiCLBas</key>
+		<value>0 : Basic</value>
+	</SV>
+	<SV>
+		<key>DvplGiCLMul</key>
+		<value>1 : Multiple-Basec</value>
+	</SV>
+	<SV>
+		<key>DvplGiCLExt</key>
+		<value>2 : Extended</value>
+	</SV>
+	<SV>
+		<key>DvplGiTitle</key>
+		<value>General Information</value>
+	</SV>
+	<SV>
+		<key>DvplGiDesc1</key>
+		<value>Version</value>
+	</SV>
+	<SV>
+		<key>DvplGiDesc2</key>
+		<value>DVPL Standard</value>
+	</SV>
+	<SV>
+		<key>DvplGiDesc3</key>
+		<value>Conformance Level</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc1</key>
+		<value>Native Vertical Active Line Count (2...65535 lines)</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc2</key>
+		<value>Native Horizontal Active Pixel Count (0...65535 )</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc3</key>
+		<value>Native Maximum Vertical Frequency (1...254 Hz)(0 ==&gt; not available)</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc4</key>
+		<value>Native Minimum  Vertical Frequency (1...254 Hz)(0 ==&gt; not available)</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc5</key>
+		<value>Maximun Transmission Data Rate (0...65535 Mega 24-bit words / s)</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc6</key>
+		<value>Minimum Transmission Vertical Front Porch (0...15 lines)</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc7</key>
+		<value>Minimum Transmission Vertical Sync Pulse Width (0,(1-2) lines)</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc8</key>
+		<value>Minimum Transmission Vertical Back Porch (0...5 lines)</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc9</key>
+		<value>Minimum Transmission Horizontal Front Porch (0,8,...120 pixels)</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc10</key>
+		<value>Minimum Transmission Horizontal Sync Pulse Width (8,16...120 pixels)</value>
+	</SV>
+	<SV>
+		<key>DvplTimDesc11</key>
+		<value>Minimum Transmission Horizontal Back Porch (0,8,...120 pixels)</value>
+	</SV>
+	<SV>
+		<key>DvplTimTitle</key>
+		<value>Timing</value>
+	</SV>
+	<SV>
+		<key>DvplFraGB1</key>
+		<value>Width (2...65536 pixels)</value>
+	</SV>
+	<SV>
+		<key>DvplFraGB2</key>
+		<value>Height (2...65536 pixels)</value>
+	</SV>
+	<SV>
+		<key>DvplFraGB3</key>
+		<value>Max. Red Bits (1...16)</value>
+	</SV>
+	<SV>
+		<key>DvplFraGB4</key>
+		<value>Max. Green Bits (1...16)</value>
+	</SV>
+	<SV>
+		<key>DvplFraGB5</key>
+		<value>Max. Blue Bits (1...16)</value>
+	</SV>
+	<SV>
+		<key>DvplFraGB6</key>
+		<value>Max. Monochrome Bits (0...16)</value>
+	</SV>
+	<SV>
+		<key>DvplFraDesc1</key>
+		<value>Capabilities</value>
+	</SV>
+	<SV>
+		<key>DvplFraDesc2</key>
+		<value>Transmission Color Format</value>
+	</SV>
+	<SV>
+		<key>DvplFraCB1</key>
+		<value>simultaneous stereo</value>
+	</SV>
+	<SV>
+		<key>DvplFraCB2</key>
+		<value>sequential stereo</value>
+	</SV>
+	<SV>
+		<key>DvplFraCB3</key>
+		<value>monaural data</value>
+	</SV>
+	<SV>
+		<key>DvplFraCB4</key>
+		<value>pixel data to all image buffers</value>
+	</SV>
+	<SV>
+		<key>DvplFraCB5</key>
+		<value>pixel data to offline image buffer</value>
+	</SV>
+	<SV>
+		<key>DvplFraCB6</key>
+		<value>RGB Single/Dual Link</value>
+	</SV>
+	<SV>
+		<key>DvplFraCB7</key>
+		<value>RGB Sequential Pixel</value>
+	</SV>
+	<SV>
+		<key>DvplFraCB8</key>
+		<value>RGB 5/4</value>
+	</SV>
+	<SV>
+		<key>DvplFraTitle</key>
+		<value>Frame</value>
+	</SV>
+	<SV>
+		<key>DvplL2PCB107</key>
+		<value>Transparency Map</value>
+	</SV>
+	<SV>
+		<key>DvplL2PCB106</key>
+		<value>Pattern Fill</value>
+	</SV>
+	<SV>
+		<key>DvplL2PCB105</key>
+		<value>Area Fill</value>
+	</SV>
+	<SV>
+		<key>DvplL2PCB104</key>
+		<value>Bit BLT</value>
+	</SV>
+	<SV>
+		<key>DvplL2PCB103</key>
+		<value>Frame Buffer Control</value>
+	</SV>
+	<SV>
+		<key>DvplL2PCB102</key>
+		<value>Gamma Table</value>
+	</SV>
+	<SV>
+		<key>DvplL2PCB101</key>
+		<value>Scaled Video</value>
+	</SV>
+	<SV>
+		<key>DvplL2PCB100</key>
+		<value>Genlock</value>
+	</SV>
+	<SV>
+		<key>DvplL2PTitle</key>
+		<value>Level 2 Packets</value>
+	</SV>
+	<SV>
+		<key>DvplSVTitle</key>
+		<value>Scaled Video</value>
+	</SV>
+	<SV>
+		<key>DvplSVlbl1</key>
+		<value>Expansion Factor (1...256)</value>
+	</SV>
+	<SV>
+		<key>DvplSVlbl2</key>
+		<value>Shrinking Factor (1...256)</value>
+	</SV>
+	<SV>
+		<key>DvplSVlbl3</key>
+		<value>Max. Scaling Horz. Input (2...65536 pixels, 0==&gt;none)</value>
+	</SV>
+	<SV>
+		<key>DvplSVlbl4</key>
+		<value>Max. Scaling Horz. Output (2...65536 pixels, 0==&gt;none)</value>
+	</SV>
+	<SV>
+		<key>DvplSVlbl5</key>
+		<value>Max. Transparency Map Depth (1...31 bit, 0==&gt;none)</value>
+	</SV>
+	<SV>
+		<key>DvplSVcb201</key>
+		<value>Overlay with alpha blend supported</value>
+	</SV>
+	<SV>
+		<key>DvplSVrb301</key>
+		<value>Integer Expansion</value>
+	</SV>
+	<SV>
+		<key>DvplSVrb302</key>
+		<value>Variable Expansion</value>
+	</SV>
+	<SV>
+		<key>DvplSVrb401</key>
+		<value>Integer Shrinkage</value>
+	</SV>
+	<SV>
+		<key>DvplSVrb402</key>
+		<value>Variable Shrinkage</value>
+	</SV>
+	<SV>
+		<key>DvplGTTitle</key>
+		<value>Gamma Table / Misc</value>
+	</SV>
+	<SV>
+		<key>DvplGTcb201</key>
+		<value>Capable of Link Shutdown</value>
+	</SV>
+	<SV>
+		<key>DvplGTcb202</key>
+		<value>Capable of Storing Image</value>
+	</SV>
+	<SV>
+		<key>DvplGTlbl1</key>
+		<value>Max. Output Red Bits (1...16, 0==&gt;not available</value>
+	</SV>
+	<SV>
+		<key>DvplGTlbl2</key>
+		<value>Max. Output Green Bits (1...16, 0==&gt;not available</value>
+	</SV>
+	<SV>
+		<key>DvplGTlbl3</key>
+		<value>Max. Output Blue Bits (1...16, 0==&gt;not available</value>
+	</SV>
+	<SV>
+		<key>DvplDelTitle</key>
+		<value>Delay</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl1</key>
+		<value>Pixel Delay of Basic Packet and Video Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl2</key>
+		<value>Line Delay of Basic Packet and Video Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl3</key>
+		<value>Packet Delay of Basic Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl4</key>
+		<value>Packet Delay of Video Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl5</key>
+		<value>Packet Delay of Scaled Video Stream Setup Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl6</key>
+		<value>Pixel Delay of Scaled Video Stream Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl7</key>
+		<value>Line Delay of Scaled Video Stream Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl8</key>
+		<value>Packet Delay of Scaled Video Stream Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl9</key>
+		<value>Pixel Delay of Transparency Map Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl10</key>
+		<value>Line Delay of Transparency Map Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl11</key>
+		<value>Packet Delay of Transparency Map Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl12</key>
+		<value>Pixel Delay of Area Fill Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl13</key>
+		<value>Line Delay of Area Fill Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl14</key>
+		<value>Packet Delay of Area Fill Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl15</key>
+		<value>Pixel Delay of Pattern Fill Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl16</key>
+		<value>Line Delay of Pattern Fill Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl17</key>
+		<value>Packet Delay of Pattern Fill Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl18</key>
+		<value>Pixel Delay of Bit BLT Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl19</key>
+		<value>Line Delay of Bit BLT Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl20</key>
+		<value>Packet Delay of Bit BLT Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl21</key>
+		<value>Pixel Delay of Gamma Table Packet</value>
+	</SV>
+	<SV>
+		<key>DvplDellbl22</key>
+		<value>Packet Delay of Gamma Table Packet</value>
+	</SV>
+</StringValue>

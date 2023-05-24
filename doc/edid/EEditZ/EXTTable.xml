@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EXTTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<EXT>
+		<etc>0</etc>
+		<shortname>VCDB</shortname>
+		<longname>Video Capability Data Block</longname>
+	</EXT>
+	<EXT>
+		<etc>1</etc>
+		<shortname>VSVDB</shortname>
+		<longname>Vendor-Specfic Video Data Block</longname>
+	</EXT>
+	<EXT>
+		<etc>2</etc>
+		<shortname>DDDB</shortname>
+		<longname>VESA Display Device Data Block</longname>
+	</EXT>
+	<EXT>
+		<etc>5</etc>
+		<shortname>CDB</shortname>
+		<longname>Colorimetry Data Block</longname>
+	</EXT>
+	<EXT>
+		<etc>13</etc>
+		<shortname>VFPDB</shortname>
+		<longname>Video Format Preference Data Block</longname>
+	</EXT>
+	<EXT>
+		<etc>14</etc>
+		<shortname>YCbCr420VDB</shortname>
+		<longname>YCbCr Video Data Block</longname>
+	</EXT>
+	<EXT>
+		<etc>15</etc>
+		<shortname>YCbCr420VCDB</shortname>
+		<longname>YCbCr Video Capability Map Data Block</longname>
+	</EXT>
+	<EXT>
+		<etc>17</etc>
+		<shortname>VSADB</shortname>
+		<longname>Vendor-Specific Audio Data Block</longname>
+	</EXT>
+	<EXT>
+		<etc>18</etc>
+		<shortname>HDMI_ADB</shortname>
+		<longname>HDMI Audio Data Block</longname>
+	</EXT>
+	<EXT>
+		<etc>32</etc>
+		<shortname>IDB</shortname>
+		<longname>InfoFrame Data Block</longname>
+	</EXT>
+	<EXT>
+		<etc>255</etc>
+		<shortname>Reserved</shortname>
+		<longname>3, 6..12, 19..31, 33..255 Data Block</longname>
+	</EXT>
+</EXTTable>

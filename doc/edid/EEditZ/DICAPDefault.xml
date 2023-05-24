@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<IntValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<IV>
+		<key>0</key>
+		<value>not defined</value>
+	</IV>
+	<IV>
+		<key>1</key>
+		<value>BGR (additive color)</value>
+	</IV>
+	<IV>
+		<key>2</key>
+		<value>Y/C (S-Video) NTSC color per ITU-R BT.470-6 (SMPTE 170M)</value>
+	</IV>
+	<IV>
+		<key>3</key>
+		<value>Y/C (S-Video) PAL color per ITU-R BT.470-6")</value>
+	</IV>
+	<IV>
+		<key>4</key>
+		<value>Y/C (S-Video) SECAM color per ITU-R BT.470-6")</value>
+	</IV>
+	<IV>
+		<key>5</key>
+		<value>YCrCb per SMPTE 293M, SMPTE 294M (4:4:4)</value>
+	</IV>
+	<IV>
+		<key>6</key>
+		<value>YCrCb per SMPTE 293M, SMPTE 294M (4:2:2)</value>
+	</IV>
+	<IV>
+		<key>7</key>
+		<value>YCrCb per SMPTE 293M, SMPTE 294M (4:2:0)</value>
+	</IV>
+	<IV>
+		<key>8</key>
+		<value>YCrCb per SMPTE 260M (Legacy HDTV)</value>
+	</IV>
+	<IV>
+		<key>9</key>
+		<value>YPbPr per SMPTE 240M (Legacy HDTV)</value>
+	</IV>
+	<IV>
+		<key>10</key>
+		<value>YCrCb per SMPTE 274M (Modern HDTV)</value>
+	</IV>
+	<IV>
+		<key>11</key>
+		<value>YPbPr per SMPTE 274M (Modern HDTV</value>
+	</IV>
+	<IV>
+		<key>12</key>
+		<value>Y B-Y R-Y BetaCam (Sony)</value>
+	</IV>
+	<IV>
+		<key>13</key>
+		<value>Y B-Y R-Y M-2 (Matsushita)</value>
+	</IV>
+	<IV>
+		<key>14</key>
+		<value>Monochrome</value>
+	</IV>
+</IntValue>

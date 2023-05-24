@@ -133,9 +133,11 @@ xilinx.com:ip:axis_subset_converter:1.1\
 xilinx.com:ip:axis_switch:1.1\
 xilinx.com:ip:clk_wiz:6.0\
 alinx.com.cn:user:i2c_hub:1.0\
+xilinx.com:ip:ila:6.2\
 xilinx.com:ip:mipi_csi2_tx_subsystem:2.1\
 xilinx.com:hls:rgb2bayer:1.0\
 xilinx.com:ip:proc_sys_reset:5.0\
+user.org:user:ultra_rxclk_x2:1.0\
 xilinx.com:ip:util_vector_logic:2.0\
 xilinx.com:ip:v_axi4s_vid_out:4.0\
 xilinx.com:ip:v_tc:6.2\
@@ -706,6 +708,15 @@ proc create_root_design { parentCell } {
   # Create instance: i2c_hub_0, and set properties
   set i2c_hub_0 [ create_bd_cell -type ip -vlnv alinx.com.cn:user:i2c_hub:1.0 i2c_hub_0 ]
 
+  # Create instance: ila_0, and set properties
+  set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]
+  set_property -dict [ list \
+   CONFIG.C_DATA_DEPTH {4096} \
+   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
+   CONFIG.C_MONITOR_TYPE {Native} \
+   CONFIG.C_NUM_OF_PROBES {6} \
+ ] $ila_0
+
   # Create instance: mipi_csi2_tx_subsyst_0, and set properties
   set mipi_csi2_tx_subsyst_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mipi_csi2_tx_subsystem:2.1 mipi_csi2_tx_subsyst_0 ]
   set_property -dict [ list \
@@ -715,7 +726,7 @@ proc create_root_design { parentCell } {
    CONFIG.C_CSI_AXIS_TDATA_WIDTH {36} \
    CONFIG.C_CSI_CRC_ENABLE {true} \
    CONFIG.C_CSI_LANES {4} \
-   CONFIG.C_CSI_LINE_BUFR_DEPTH {4096} \
+   CONFIG.C_CSI_LINE_BUFR_DEPTH {8192} \
    CONFIG.C_CSI_MAX_BPC {12} \
    CONFIG.C_DATA_LANE0_IO_POSITION {0} \
    CONFIG.C_DATA_LANE1_IO_POSITION {2} \
@@ -723,7 +734,7 @@ proc create_root_design { parentCell } {
    CONFIG.C_DATA_LANE3_IO_POSITION {4} \
    CONFIG.C_DPHY_EN_REG_IF {true} \
    CONFIG.C_DPHY_LANES {4} \
-   CONFIG.C_HS_LINE_RATE {400} \
+   CONFIG.C_HS_LINE_RATE {1200} \
    CONFIG.DATA_LANE0_IO_LOC {W8} \
    CONFIG.DATA_LANE0_IO_LOC_NAME {IO_L1P_T0L_N0_DBC_65} \
    CONFIG.DATA_LANE1_IO_LOC {U9} \
@@ -755,24 +766,24 @@ proc create_root_design { parentCell } {
   set rgb2bayer_0 [ create_bd_cell -type ip -vlnv xilinx.com:hls:rgb2bayer:1.0 rgb2bayer_0 ]
   set_property -dict [ list \
    CONFIG.MAXIMUM_DATA_WIDTH {12} \
-   CONFIG.MAXIMUM_NUMBER_OF_COLUMNS {1920} \
-   CONFIG.MAXIMUM_NUMBER_OF_ROWS {1280} \
+   CONFIG.MAXIMUM_NUMBER_OF_COLUMNS {3840} \
+   CONFIG.MAXIMUM_NUMBER_OF_ROWS {2160} \
  ] $rgb2bayer_0
 
   # Create instance: rgb2bayer_1, and set properties
   set rgb2bayer_1 [ create_bd_cell -type ip -vlnv xilinx.com:hls:rgb2bayer:1.0 rgb2bayer_1 ]
   set_property -dict [ list \
    CONFIG.MAXIMUM_DATA_WIDTH {8} \
-   CONFIG.MAXIMUM_NUMBER_OF_COLUMNS {1920} \
-   CONFIG.MAXIMUM_NUMBER_OF_ROWS {1280} \
+   CONFIG.MAXIMUM_NUMBER_OF_COLUMNS {3840} \
+   CONFIG.MAXIMUM_NUMBER_OF_ROWS {2160} \
  ] $rgb2bayer_1
 
   # Create instance: rgb2bayer_2, and set properties
   set rgb2bayer_2 [ create_bd_cell -type ip -vlnv xilinx.com:hls:rgb2bayer:1.0 rgb2bayer_2 ]
   set_property -dict [ list \
    CONFIG.MAXIMUM_DATA_WIDTH {8} \
-   CONFIG.MAXIMUM_NUMBER_OF_COLUMNS {1920} \
-   CONFIG.MAXIMUM_NUMBER_OF_ROWS {1280} \
+   CONFIG.MAXIMUM_NUMBER_OF_COLUMNS {3840} \
+   CONFIG.MAXIMUM_NUMBER_OF_ROWS {2160} \
  ] $rgb2bayer_2
 
   # Create instance: rst_ps8_0_300M, and set properties
@@ -781,6 +792,12 @@ proc create_root_design { parentCell } {
   # Create instance: rst_video_clk_wiz, and set properties
   set rst_video_clk_wiz [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_video_clk_wiz ]
 
+  # Create instance: ultra_rxclk_x2_0, and set properties
+  set ultra_rxclk_x2_0 [ create_bd_cell -type ip -vlnv user.org:user:ultra_rxclk_x2:1.0 ultra_rxclk_x2_0 ]
+  set_property -dict [ list \
+   CONFIG.USE_PLL {TRUE} \
+ ] $ultra_rxclk_x2_0
+
   # Create instance: util_vector_logic_0, and set properties
   set util_vector_logic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_0 ]
   set_property -dict [ list \
@@ -788,6 +805,14 @@ proc create_root_design { parentCell } {
    CONFIG.C_SIZE {1} \
    CONFIG.LOGO_FILE {data/sym_notgate.png} \
  ] $util_vector_logic_0
+
+  # Create instance: util_vector_logic_1, and set properties
+  set util_vector_logic_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_1 ]
+  set_property -dict [ list \
+   CONFIG.C_OPERATION {not} \
+   CONFIG.C_SIZE {1} \
+   CONFIG.LOGO_FILE {data/sym_notgate.png} \
+ ] $util_vector_logic_1
 
   # Create instance: v_axi4s_vid_out_0, and set properties
   set v_axi4s_vid_out_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_axi4s_vid_out:4.0 v_axi4s_vid_out_0 ]
@@ -801,8 +826,9 @@ proc create_root_design { parentCell } {
   # Create instance: v_tc_0, and set properties
   set v_tc_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_tc:6.2 v_tc_0 ]
   set_property -dict [ list \
-   CONFIG.GEN_F0_VSYNC_HSTART {640} \
+   CONFIG.GEN_F0_VSYNC_HSTART {695} \
    CONFIG.enable_detection {false} \
+   CONFIG.max_clocks_per_line {8192} \
  ] $v_tc_0
 
   # Create instance: v_tpg_0, and set properties
@@ -1378,7 +1404,10 @@ proc create_root_design { parentCell } {
   connect_bd_net -net mipi_csi2_tx_subsyst_0_interrupt [get_bd_pins mipi_csi2_tx_subsyst_0/interrupt] [get_bd_pins xlconcat_0/In5]
   connect_bd_net -net rst_ps8_0_300M_peripheral_aresetn [get_bd_pins AXI_LITE_REG_0/s00_axi_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axi_interconnect_0/S01_ARESETN] [get_bd_pins axi_interconnect_0/S02_ARESETN] [get_bd_pins axi_interconnect_0/S03_ARESETN] [get_bd_pins axi_interconnect_0/S04_ARESETN] [get_bd_pins axi_uartlite_0/s_axi_aresetn] [get_bd_pins axi_vdma_0/axi_resetn] [get_bd_pins axi_vdma_1/axi_resetn] [get_bd_pins axi_vdma_2/axi_resetn] [get_bd_pins axis_passthrough_mon_0/aresetn] [get_bd_pins axis_passthrough_mon_0/s00_axi_aresetn] [get_bd_pins axis_passthrough_mon_1/aresetn] [get_bd_pins axis_passthrough_mon_1/s00_axi_aresetn] [get_bd_pins axis_passthrough_mon_2/aresetn] [get_bd_pins axis_passthrough_mon_2/s00_axi_aresetn] [get_bd_pins axis_subset_converter_0/aresetn] [get_bd_pins axis_subset_converter_1/aresetn] [get_bd_pins axis_subset_converter_2/aresetn] [get_bd_pins axis_subset_converter_3/aresetn] [get_bd_pins axis_switch_0/aresetn] [get_bd_pins axis_switch_0/s_axi_ctrl_aresetn] [get_bd_pins clk_wiz_0/s_axi_aresetn] [get_bd_pins mipi_csi2_tx_subsyst_0/s_axis_aresetn] [get_bd_pins ps8_0_axi_periph/ARESETN] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/M03_ARESETN] [get_bd_pins ps8_0_axi_periph/M04_ARESETN] [get_bd_pins ps8_0_axi_periph/M05_ARESETN] [get_bd_pins ps8_0_axi_periph/M06_ARESETN] [get_bd_pins ps8_0_axi_periph/M07_ARESETN] [get_bd_pins ps8_0_axi_periph/M08_ARESETN] [get_bd_pins ps8_0_axi_periph/M09_ARESETN] [get_bd_pins ps8_0_axi_periph/M10_ARESETN] [get_bd_pins ps8_0_axi_periph/M11_ARESETN] [get_bd_pins ps8_0_axi_periph/M12_ARESETN] [get_bd_pins ps8_0_axi_periph/M13_ARESETN] [get_bd_pins ps8_0_axi_periph/M14_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins rgb2bayer_0/ap_rst_n] [get_bd_pins rgb2bayer_1/ap_rst_n] [get_bd_pins rgb2bayer_2/ap_rst_n] [get_bd_pins rst_ps8_0_300M/peripheral_aresetn] [get_bd_pins util_vector_logic_0/Op1] [get_bd_pins v_axi4s_vid_out_0/aresetn] [get_bd_pins v_tc_0/s_axi_aresetn] [get_bd_pins v_tpg_0/ap_rst_n] [get_bd_pins v_vid_in_axi4s_0/aresetn] [get_bd_pins v_vid_in_axi4s_1/aresetn] [get_bd_pins xgpio_i2c_0/s_axi_aresetn]
   connect_bd_net -net rst_video_clk_wiz_peripheral_aresetn [get_bd_pins rst_video_clk_wiz/peripheral_aresetn] [get_bd_pins v_tc_0/resetn]
+  connect_bd_net -net ultra_rxclk_x2_0_cmt_locked [get_bd_pins ila_0/probe2] [get_bd_pins ultra_rxclk_x2_0/cmt_locked]
+  connect_bd_net -net ultra_rxclk_x2_0_rx_clk_x2 [get_bd_pins ila_0/probe1] [get_bd_pins ultra_rxclk_x2_0/rx_clk_x2] [get_bd_pins v_vid_in_axi4s_0/vid_io_in_clk]
   connect_bd_net -net util_vector_logic_0_Res [get_bd_pins I2C_SLAVE_0/RESET] [get_bd_pins util_vector_logic_0/Res]
+  connect_bd_net -net util_vector_logic_1_Res [get_bd_pins ultra_rxclk_x2_0/reset] [get_bd_pins util_vector_logic_1/Res]
   connect_bd_net -net v_axi4s_vid_out_0_vid_active_video [get_bd_pins v_axi4s_vid_out_0/vid_active_video] [get_bd_pins v_vid_in_axi4s_1/vid_active_video]
   connect_bd_net -net v_axi4s_vid_out_0_vid_data [get_bd_pins v_axi4s_vid_out_0/vid_data] [get_bd_pins v_vid_in_axi4s_1/vid_data]
   connect_bd_net -net v_axi4s_vid_out_0_vid_hsync [get_bd_pins v_axi4s_vid_out_0/vid_hsync] [get_bd_pins v_vid_in_axi4s_1/vid_hsync]
@@ -1386,11 +1415,11 @@ proc create_root_design { parentCell } {
   connect_bd_net -net v_axi4s_vid_out_0_vtg_ce [get_bd_pins v_axi4s_vid_out_0/vtg_ce] [get_bd_pins v_tc_0/gen_clken]
   connect_bd_net -net v_tc_0_irq [get_bd_pins v_tc_0/irq] [get_bd_pins xlconcat_0/In4]
   connect_bd_net -net v_tpg_0_interrupt [get_bd_pins v_tpg_0/interrupt] [get_bd_pins xlconcat_0/In3]
-  connect_bd_net -net vid_active_video_0_1 [get_bd_ports vid_de] [get_bd_pins v_vid_in_axi4s_0/vid_active_video]
+  connect_bd_net -net vid_active_video_0_1 [get_bd_ports vid_de] [get_bd_pins ila_0/probe3] [get_bd_pins v_vid_in_axi4s_0/vid_active_video]
+  connect_bd_net -net vid_clk_1 [get_bd_ports vid_clk] [get_bd_pins ila_0/probe0] [get_bd_pins ultra_rxclk_x2_0/clk]
   connect_bd_net -net vid_data_0_1 [get_bd_ports vid_data] [get_bd_pins v_vid_in_axi4s_0/vid_data]
-  connect_bd_net -net vid_hsync_0_1 [get_bd_ports vid_hs] [get_bd_pins v_vid_in_axi4s_0/vid_hsync]
-  connect_bd_net -net vid_io_in_clk_0_1 [get_bd_ports vid_clk] [get_bd_pins v_vid_in_axi4s_0/vid_io_in_clk]
-  connect_bd_net -net vid_vsync_0_1 [get_bd_ports vid_vs] [get_bd_pins v_vid_in_axi4s_0/vid_vsync]
+  connect_bd_net -net vid_hsync_0_1 [get_bd_ports vid_hs] [get_bd_pins ila_0/probe4] [get_bd_pins v_vid_in_axi4s_0/vid_hsync]
+  connect_bd_net -net vid_vsync_0_1 [get_bd_ports vid_vs] [get_bd_pins ila_0/probe5] [get_bd_pins v_vid_in_axi4s_0/vid_vsync]
   connect_bd_net -net xgpio_i2c_0_uart_0_txen [get_bd_ports uart_0_txen] [get_bd_pins xgpio_i2c_0/uart_0_txen]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins xlconcat_0/dout] [get_bd_pins zynq_ultra_ps_e_0/pl_ps_irq0]
   connect_bd_net -net xlconcat_1_dout [get_bd_pins mipi_csi2_tx_subsyst_0/s_axis_tuser] [get_bd_pins xlconcat_1/dout]
@@ -1401,9 +1430,9 @@ proc create_root_design { parentCell } {
   connect_bd_net -net xlconstant_4_dout [get_bd_pins v_vid_in_axi4s_0/aclken] [get_bd_pins v_vid_in_axi4s_0/axis_enable] [get_bd_pins v_vid_in_axi4s_0/vid_io_in_ce] [get_bd_pins xlconstant_4/dout]
   connect_bd_net -net xlconstant_5_dout [get_bd_pins i2c_hub_0/upstream1_scl_I] [get_bd_pins i2c_hub_0/upstream1_scl_T] [get_bd_pins xlconstant_5/dout]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins AXI_LITE_REG_0/s00_axi_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axi_interconnect_0/S01_ACLK] [get_bd_pins axi_interconnect_0/S02_ACLK] [get_bd_pins axi_interconnect_0/S03_ACLK] [get_bd_pins axi_interconnect_0/S04_ACLK] [get_bd_pins axi_uartlite_0/s_axi_aclk] [get_bd_pins axi_vdma_0/m_axi_mm2s_aclk] [get_bd_pins axi_vdma_0/m_axi_s2mm_aclk] [get_bd_pins axi_vdma_0/m_axis_mm2s_aclk] [get_bd_pins axi_vdma_0/s_axi_lite_aclk] [get_bd_pins axi_vdma_0/s_axis_s2mm_aclk] [get_bd_pins axi_vdma_1/m_axi_mm2s_aclk] [get_bd_pins axi_vdma_1/m_axis_mm2s_aclk] [get_bd_pins axi_vdma_1/s_axi_lite_aclk] [get_bd_pins axi_vdma_2/m_axi_mm2s_aclk] [get_bd_pins axi_vdma_2/m_axi_s2mm_aclk] [get_bd_pins axi_vdma_2/m_axis_mm2s_aclk] [get_bd_pins axi_vdma_2/s_axi_lite_aclk] [get_bd_pins axi_vdma_2/s_axis_s2mm_aclk] [get_bd_pins axis_passthrough_mon_0/aclk] [get_bd_pins axis_passthrough_mon_0/s00_axi_aclk] [get_bd_pins axis_passthrough_mon_1/aclk] [get_bd_pins axis_passthrough_mon_1/s00_axi_aclk] [get_bd_pins axis_passthrough_mon_2/aclk] [get_bd_pins axis_passthrough_mon_2/s00_axi_aclk] [get_bd_pins axis_subset_converter_0/aclk] [get_bd_pins axis_subset_converter_1/aclk] [get_bd_pins axis_subset_converter_2/aclk] [get_bd_pins axis_subset_converter_3/aclk] [get_bd_pins axis_switch_0/aclk] [get_bd_pins axis_switch_0/s_axi_ctrl_aclk] [get_bd_pins clk_wiz_0/s_axi_aclk] [get_bd_pins mipi_csi2_tx_subsyst_0/s_axis_aclk] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/M03_ACLK] [get_bd_pins ps8_0_axi_periph/M04_ACLK] [get_bd_pins ps8_0_axi_periph/M05_ACLK] [get_bd_pins ps8_0_axi_periph/M06_ACLK] [get_bd_pins ps8_0_axi_periph/M07_ACLK] [get_bd_pins ps8_0_axi_periph/M08_ACLK] [get_bd_pins ps8_0_axi_periph/M09_ACLK] [get_bd_pins ps8_0_axi_periph/M10_ACLK] [get_bd_pins ps8_0_axi_periph/M11_ACLK] [get_bd_pins ps8_0_axi_periph/M12_ACLK] [get_bd_pins ps8_0_axi_periph/M13_ACLK] [get_bd_pins ps8_0_axi_periph/M14_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins rgb2bayer_0/ap_clk] [get_bd_pins rgb2bayer_1/ap_clk] [get_bd_pins rgb2bayer_2/ap_clk] [get_bd_pins rst_ps8_0_300M/slowest_sync_clk] [get_bd_pins v_axi4s_vid_out_0/aclk] [get_bd_pins v_tc_0/s_axi_aclk] [get_bd_pins v_tpg_0/ap_clk] [get_bd_pins v_vid_in_axi4s_0/aclk] [get_bd_pins v_vid_in_axi4s_1/aclk] [get_bd_pins xgpio_i2c_0/s_axi_aclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_lpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0] [get_bd_pins zynq_ultra_ps_e_0/saxihp0_fpd_aclk]
-  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk1 [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins mipi_csi2_tx_subsyst_0/dphy_clk_200M] [get_bd_pins zynq_ultra_ps_e_0/pl_clk1]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk1 [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins ila_0/clk] [get_bd_pins mipi_csi2_tx_subsyst_0/dphy_clk_200M] [get_bd_pins zynq_ultra_ps_e_0/pl_clk1]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk2 [get_bd_pins I2C_SLAVE_0/CLOCK] [get_bd_pins zynq_ultra_ps_e_0/pl_clk2]
-  connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins rst_ps8_0_300M/ext_reset_in] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins rst_ps8_0_300M/ext_reset_in] [get_bd_pins util_vector_logic_1/Op1] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]
 
   # Create address segments
   assign_bd_address -offset 0x000800000000 -range 0x000800000000 -target_address_space [get_bd_addr_spaces axi_vdma_0/Data_MM2S] [get_bd_addr_segs zynq_ultra_ps_e_0/SAXIGP2/HP0_DDR_HIGH] -force

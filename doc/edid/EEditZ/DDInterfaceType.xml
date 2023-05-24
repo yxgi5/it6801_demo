@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<IntValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<IV>
+		<key>0</key>
+		<value>Analog</value>
+	</IV>
+	<IV>
+		<key>1</key>
+		<value>LVDS</value>
+	</IV>
+	<IV>
+		<key>2</key>
+		<value>RSDS</value>
+	</IV>
+	<IV>
+		<key>3</key>
+		<value>DVI-D</value>
+	</IV>
+	<IV>
+		<key>4</key>
+		<value>DVI-I, analog</value>
+	</IV>
+	<IV>
+		<key>5</key>
+		<value>DVI-I, digital</value>
+	</IV>
+	<IV>
+		<key>6</key>
+		<value>HDMI-A</value>
+	</IV>
+	<IV>
+		<key>7</key>
+		<value>HDMI-B</value>
+	</IV>
+	<IV>
+		<key>8</key>
+		<value>MDDI</value>
+	</IV>
+	<IV>
+		<key>9</key>
+		<value>DisplayPort</value>
+	</IV>
+	<IV>
+		<key>10</key>
+		<value>IEEE-1394</value>
+	</IV>
+	<IV>
+		<key>11</key>
+		<value>M1, analog</value>
+	</IV>
+	<IV>
+		<key>12</key>
+		<value>M1, digital</value>
+	</IV>
+	<IV>
+		<key>13</key>
+		<value>reserved</value>
+	</IV>
+	<IV>
+		<key>14</key>
+		<value>reserved</value>
+	</IV>
+	<IV>
+		<key>15</key>
+		<value>reserved</value>
+	</IV>
+</IntValue>

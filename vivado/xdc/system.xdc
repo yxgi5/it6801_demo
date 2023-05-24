@@ -49,6 +49,7 @@ set_property PACKAGE_PIN C8 [get_ports i2c_4_scl_io]
 set_property IOSTANDARD LVCMOS18 [get_ports i2c_4_scl_io]
 
 # IT6801 timing
+create_clock -period 6.600 -name vid_clk -waveform {0.000 3.300} [get_ports vid_clk]
 set_property PACKAGE_PIN L13 [get_ports vid_clk]
 set_property IOSTANDARD LVCMOS33 [get_ports vid_clk]
 

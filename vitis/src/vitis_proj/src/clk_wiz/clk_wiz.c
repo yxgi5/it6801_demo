@@ -131,13 +131,13 @@ int XClk_Wiz_dynamic_reconfig(XClk_Wiz * ClkWizInstance, u32 DeviceId)
 //    Divide0_Int = 20;
 //    Divide0_Frac = 0;
 
-    //in=200
-    //out1=85.8
-    Multiply_Int = 53;
-    Multiply_Frac = 625;
-    Divide = 10;
-    Divide0_Int = 12;
-    Divide0_Frac = 500;
+//    //in=200
+//    //out1=85.8
+//    Multiply_Int = 53;
+//    Multiply_Frac = 625;
+//    Divide = 10;
+//    Divide0_Int = 12;
+//    Divide0_Frac = 500;
 
 //    //in=200
 //    //out1=96.2438
@@ -146,6 +146,14 @@ int XClk_Wiz_dynamic_reconfig(XClk_Wiz * ClkWizInstance, u32 DeviceId)
 //    Divide = 17;
 //    Divide0_Int = 10;
 //    Divide0_Frac = 375;
+
+    //in=200
+    //out1 297
+    Multiply_Int = 37;
+    Multiply_Frac = 125;
+    Divide = 5;
+    Divide0_Int = 5;
+    Divide0_Frac = 0;
 
 
     /* Configuring Multiply and Divide values */

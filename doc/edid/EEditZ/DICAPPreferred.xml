@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<IntValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<IV>
+		<key>0</key>
+		<value>only supports default</value>
+	</IV>
+	<IV>
+		<key>1</key>
+		<value>BGR (additive color)</value>
+	</IV>
+	<IV>
+		<key>2</key>
+		<value>Y/C (S-Video) xxxxx color</value>
+	</IV>
+	<IV>
+		<key>3</key>
+		<value>Yxx (SMPTE 2xxM), Color Difference (Component Video)</value>
+	</IV>
+	<IV>
+		<key>4</key>
+		<value>Monochrome</value>
+	</IV>
+</IntValue>

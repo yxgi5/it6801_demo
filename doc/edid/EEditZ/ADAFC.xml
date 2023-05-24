@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<IntValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<IV>
+		<key>0</key>
+		<value>undefined</value>
+	</IV>
+	<IV>
+		<key>1</key>
+		<value>L-PCM</value>
+	</IV>
+	<IV>
+		<key>9</key>
+		<value>One Bit Audio</value>
+	</IV>
+</IntValue>

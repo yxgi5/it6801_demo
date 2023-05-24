@@ -64,8 +64,8 @@ vres_timing_t vres_resolutions[VIDEO_RESOLUTION_NO_BUTT] = {
    { "FHDPLUS",1280,    5,   10,   80,    1, 1920,   48,   32,   80,    1 }, // VIDEO_RESOLUTION_FHDPLUS
    { "UXGA",   1200,    1,    3,   46,    0, 1600,   64,  192,  304,    0 }, // VIDEO_RESOLUTION_UXGA
   {"1920X960",  960,   10,   20,   10,    0, 1920,   20,   40,   20,    0 }, // VIDEO_RESOLUTION_1920X960
-//   { "4K",     2160,    8,   10,   72,    1, 3840,  176,   88,  296,    1 }, // VIDEO_RESOLUTION_4K
-   { "4K",     2160,    8,   10,   72,    1, 1920,   88,   44,  148,    1 }, // VIDEO_RESOLUTION_4K
+   { "4K",     2160,    8,   10,   72,    1, 3840,  176,   88,  296,    1 }, // VIDEO_RESOLUTION_4K
+//   { "4K",     2160,    8,   10,   72,    1, 1920,   88,   44,  148,    1 }, // VIDEO_RESOLUTION_4K
    { "4KFULL", 2160,    8,   10,   72,    1, 4096,   88,   88,  128,    1 }, // VIDEO_RESOLUTION_4KW
    { "CUSTOM1",1080,   24,    2,   10,    1, 1920,   40,   40,   80,    1 }, // VIDEO_RESOLUTION_CUSTOM1
    { "4KCUST", 2160,    3,    5,   18,    1, 3840,   48,   32,   80,    1 }, // VIDEO_RESOLUTION_4KCUST
