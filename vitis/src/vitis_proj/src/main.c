@@ -245,9 +245,9 @@ struct reginfo cfg_gmsl[] =
 struct reginfo cfg_gmsl_717F[] =
 {
 //	{0x80, 0x0001, 0x08},// default 0x08, 6Gbps mode
-	{0x80, 0x0001, 0x04},// 3Gbps mode, 717F operates at a fixed rate of 3Gbps
+//	{0x80, 0x0001, 0x04},// 3Gbps mode, 717F operates at a fixed rate of 3Gbps
 //	{0x80, 0x0010, 0xA0},// reset link and registers
-	{0x80, 0x0010, 0xA1},// reset link and registers
+//	{0x80, 0x0010, 0xA1},// reset link and registers
 
 	{0x80, SEQUENCE_WAIT_MS, 0x80},//delay for a while
 	{0x80, 0x0331, 0x30},//default 0x30, 4lane
@@ -1379,8 +1379,15 @@ int main()
 
 #if 1
     // MAX96717F config
+    ret32 = xgpio_i2c_reg16_write(I2C_NO_1, 0x80>>1, 0x0001, 0x04, STRETCH_ON);
+    ret32 = xgpio_i2c_reg16_write(I2C_NO_1, 0x80>>1, 0x0010, 0x21, STRETCH_ON);
+    usleep(100000);
+    
     ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x80>>1, 0x0000, &ret8, STRETCH_ON);
     ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x80>>1, 0x0001, &ret8, STRETCH_ON);
+
+//    ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x0000, &ret8, STRETCH_ON);
+//    ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x0001, &ret8, STRETCH_ON);
 
     max929x_write_array(I2C_NO_1, cfg_gmsl_717F);
 #endif
@@ -1389,7 +1396,7 @@ int main()
     clkwiz_vtc_cfg();
     tpg_config();
 //    clear_display();
-
+#if 0
 	rc = f_mount(&fatfs, "1:/", 0);
 	if (rc != FR_OK)
 	{
@@ -1404,7 +1411,7 @@ int main()
 
 	bmp_read("1:/p0.bmp",FRAME_BUFFER_4, 1920*3, &fil);
 	Xil_DCacheFlushRange((unsigned int) FRAME_BUFFER_4, 1920*1280*3);
-
+#endif
 	vdma_config_64_vin();
     vdma_config_64_tf();
     vdma_config_64();
@@ -1417,7 +1424,16 @@ int main()
 
     while(1)
     {
-//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_0, 0x80>>1, 0x0000, &ret8, STRETCH_ON);
+//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x80>>1, 0x0112, &ret8, STRETCH_ON);
+//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x0013, &ret8, STRETCH_ON);
+//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x0108, &ret8, STRETCH_ON);
+//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x011a, &ret8, STRETCH_ON);
+//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x012c, &ret8, STRETCH_ON);
+//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x013e, &ret8, STRETCH_ON);
+//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x01dc, &ret8, STRETCH_ON);
+//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x01fc, &ret8, STRETCH_ON);
+//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x021c, &ret8, STRETCH_ON);
+//    	ret32 = xgpio_i2c_reg16_read(I2C_NO_1, 0x90>>1, 0x023c, &ret8, STRETCH_ON);
     	usleep(150000);
 		it6801_InterruptHandler();
     }
