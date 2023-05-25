@@ -1307,7 +1307,7 @@ static void EDIDRAMInitial(unsigned char *pIT6801EDID)
 	// }
 
 //	set_iic_mode(0, HDMI_I2C_ADDR);
-//	hdmirxset(0xc1, 0xff, 0x91);				// VSDB 地址(+4)
+//	hdmirxset(0xc1, 0xff, 145+4);				// VSDB 地址(+4)
 	hdmirxset(0xc1, 0xff, 135+4);				// VSDB 地址(+4)
 	hdmirxset(0xc2, 0xff, 0x10);				// AB 的值
 	hdmirxset(0xc3, 0xff, 0x00);				// CD 的值
@@ -1334,7 +1334,7 @@ int main()
     xgpio_init();
 
     xil_printf("***************************\n\r");
-    print("1920x1280@30_RAW12_out_9295\r\n");
+    print("3840x2160@30_RAW12_out_717\r\n");
     xil_printf("\r\n%s,%s\r\n",__DATE__,__TIME__);
 
 #ifdef XPAR_AXI_LITE_REG_NUM_INSTANCES

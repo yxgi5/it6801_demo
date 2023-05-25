@@ -52,6 +52,7 @@ if [ $RM_LVL -ge 1 ]; then
         rm -rf ./.Xil
         rm -rf ./*.jou
         rm -rf ./*.log
+		rm -rf ./*.dmp
         rm -rf ./*.str
         rm -rf ./Packages
         rm -rf ./NA
@@ -64,6 +65,7 @@ if [ $RM_LVL -ge 1 ]; then
         gio trash ./.Xil
         gio trash ./*.jou
         gio trash ./*.log
+		gio trash ./*.dmp
         gio trash ./*.str
         gio trash ./Packages
         gio trash ./NA

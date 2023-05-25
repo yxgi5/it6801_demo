@@ -64,6 +64,7 @@ vivado/Packages
 vivado/NA
 vivado/ip_cache/*
 __pycache__
+hls/emb_gen
 
 # except for .gitkeep
 !.gitkeep
