@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<IntValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<IV>
+		<key>0</key>
+		<value>not used</value>
+	</IV>
+	<IV>
+		<key>1</key>
+		<value>used</value>
+	</IV>
+</IntValue>

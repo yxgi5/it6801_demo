@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CTTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<CT>
+		<number>0</number>
+		<act>Refer to Stream Header</act>
+		<ases>.</ases>
+		<asts>.</asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>1</number>
+		<act>L-PCM</act>
+		<ases>IEC 60958-3</ases>
+		<asts>IEC 60958-3 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>2</number>
+		<act>AC-3</act>
+		<ases>ATSC A/52B, excluding Annex E</ases>
+		<asts>IEC 61937-3 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>3</number>
+		<act>MPEG-1</act>
+		<ases>ISO/IEC 11172-3 Layer 1 or Layer 2</ases>
+		<asts>IEC 61937-4 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>4</number>
+		<act>MP3</act>
+		<ases>ISO/IEC 11172-3  Layer 3</ases>
+		<asts>IEC 61937-4 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>5</number>
+		<act>MPEG2</act>
+		<ases>ISO/IEC 13818-3 </ases>
+		<asts>IEC 61937-4 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>6</number>
+		<act>AAC LC</act>
+		<ases>ISO/IEC 14496-3 </ases>
+		<asts>IEC 61937-6 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>7</number>
+		<act>DTS</act>
+		<ases>ETSI TS 102 114 </ases>
+		<asts>IEC 61937-5 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>8</number>
+		<act>ATRAC</act>
+		<ases>IEC 61909 </ases>
+		<asts>IEC 61937-7 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>9</number>
+		<act>One Bit Audio</act>
+		<ases>ISO/IEC 14496-3 , subpart 10</ases>
+		<asts>ISO/IEC 14496-3 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>10</number>
+		<act>Enhanced AC-3</act>
+		<ases>ATSC A/52B </ases>
+		<asts>IEC 61937-3 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>11</number>
+		<act>DTS-HD</act>
+		<ases>DVD Forum DTS-HD </ases>
+		<asts>IEC 61937-5 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>12</number>
+		<act>MAT</act>
+		<ases>DVD Forum MLP </ases>
+		<asts>IEC 61937-9 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>13</number>
+		<act>DST</act>
+		<ases>ISO/IEC 14496-3  subpart 10</ases>
+		<asts>ISO/IEC 14496-3  subpart 10</asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>14</number>
+		<act>WMA Pro</act>
+		<ases>WMA Pro Decoder Specification 30</ases>
+		<asts>IEC 61937-8 </asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+	<CT>
+		<number>15</number>
+		<act>Refer to CXT</act>
+		<ases>.</ases>
+		<asts>.</asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CT>
+</CTTable>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CXTTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<CXT>
+		<number>0</number>
+		<acet>Refer to Audio Coding</acet>
+		<ases>.</ases>
+		<asts>.</asts>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</CXT>
+	<CXT>
+		<number>1</number>
+		<acet>HE-AAC</acet>
+		<ases>ISO/IEC 14496-3:2005</ases>
+		<asts>IEC 61937-6</asts>
+		<ceaE>true</ceaE>
+		<ceaF>false</ceaF>
+	</CXT>
+	<CXT>
+		<number>2</number>
+		<acet>HE-AACv2</acet>
+		<ases>ISO/IEC 14496-3:2005/AMD2:2006</ases>
+		<asts>IEC 61937-6</asts>
+		<ceaE>true</ceaE>
+		<ceaF>false</ceaF>
+	</CXT>
+	<CXT>
+		<number>3</number>
+		<acet>MPEG Surround</acet>
+		<ases>ISO/IEC 23003-1:2007</ases>
+		<asts>.</asts>
+		<ceaE>true</ceaE>
+		<ceaF>false</ceaF>
+	</CXT>
+	<CXT>
+		<number>4</number>
+		<acet>MPEG-4 HE AAC</acet>
+		<ases>ISO/IEC 14496-3</ases>
+		<asts>IEC 61937-11</asts>
+		<ceaE>false</ceaE>
+		<ceaF>true</ceaF>
+	</CXT>
+	<CXT>
+		<number>5</number>
+		<acet>MPEG-4 HE AAC v2</acet>
+		<ases>ISO/IEC 23003-1</ases>
+		<asts>IEC 61937-11</asts>
+		<ceaE>false</ceaE>
+		<ceaF>true</ceaF>
+	</CXT>
+	<CXT>
+		<number>6</number>
+		<acet>MPEG-4 AAC LC</acet>
+		<ases>ISO/IEC 14496-3</ases>
+		<asts>IEC 61937-11</asts>
+		<ceaE>false</ceaE>
+		<ceaF>true</ceaF>
+	</CXT>
+	<CXT>
+		<number>7</number>
+		<acet>DRA</acet>
+		<ases>GB/T 22726</ases>
+		<asts>IEC 61937-12</asts>
+		<ceaE>false</ceaE>
+		<ceaF>true</ceaF>
+	</CXT>
+	<CXT>
+		<number>8</number>
+		<acet>MPEG-4 HE AAC + MPEG Surround</acet>
+		<ases>ISO/IEC 14496-3, ISO/IEC 23003-1</ases>
+		<asts>IEC 61937-11</asts>
+		<ceaE>false</ceaE>
+		<ceaF>true</ceaF>
+	</CXT>
+	<CXT>
+		<number>9</number>
+		<acet>RSVD</acet>
+		<ases>.</ases>
+		<asts>.</asts>
+		<ceaE>false</ceaE>
+		<ceaF>true</ceaF>
+	</CXT>
+	<CXT>
+		<number>10</number>
+		<acet>MPEG-4 AAC LC + MPEG Surround</acet>
+		<ases>ISO/IEC 14496-3, ISO/IEC 23003-1</ases>
+		<asts>IEC 61937-11</asts>
+		<ceaE>false</ceaE>
+		<ceaF>true</ceaF>
+	</CXT>
+</CXTTable>

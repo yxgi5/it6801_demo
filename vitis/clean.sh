@@ -46,12 +46,12 @@ case "$1" in
 #    RM_LOG=1
     RM_LVL=1
     ;;
--w) #echo
+-d) #echo
 #    echo "the -w option exists"
 #    RM_WORKSPACE=1
     RM_LVL=2
     ;;
--d) #echo
+-w) #echo
 #    echo "the -w option exists"
 #    RM_OUTPUT=1
     RM_LVL=3
@@ -63,8 +63,8 @@ case "$1" in
 -h|--help) echo "Usage: $0 [parameters]"
     echo "avalible parameters:"
     echo "-c: clear log files(default)"
-    echo "-w: delete workspace"
     echo "-d: delete output"
+    echo "-w: delete workspace and output"
     echo "-t: move to trash"
     echo "-b: batch mode"
     echo "-h|--help: show this help"
@@ -96,13 +96,15 @@ if [ $RM_LVL -ge 2 ]; then
 #        rm -rf ./*.jou
 #        rm -rf ./*.log
 #        rm -rf ./Packages
-        rm -rf ./sdk_workspace
+#        rm -rf ./sdk_workspace
+        rm -rf ./output
     else
 #        gio trash ./.Xil
 #        gio trash ./*.jou
 #        gio trash ./*.log
 #        gio trash ./Packages
-        gio trash ./sdk_workspace
+#        gio trash ./sdk_workspace
+        gio trash ./output
     fi
 fi
 
@@ -113,15 +115,13 @@ if [ $RM_LVL -ge 3 ]; then
 #        rm -rf ./*.jou
 #        rm -rf ./*.log
 #        rm -rf ./Packages
-#        rm -rf ./sdk_workspace
-        rm -rf ./output
+        rm -rf ./sdk_workspace
     else
 #        gio trash ./.Xil
 #        gio trash ./*.jou
 #        gio trash ./*.log
 #        gio trash ./Packages
-#        gio trash ./sdk_workspace
-        gio trash ./output
+        gio trash ./sdk_workspace
     fi
 fi
 

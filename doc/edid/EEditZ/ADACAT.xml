@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<IntValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<IV>
+		<key>0</key>
+		<value>undefined</value>
+	</IV>
+	<IV>
+		<key>1</key>
+		<value>10.2 channels (ITU-R BS-2159-4 (Type B 10.2ch)</value>
+	</IV>
+	<IV>
+		<key>2</key>
+		<value>22.2 channels (SMPTE 2036-2)</value>
+	</IV>
+	<IV>
+		<key>3</key>
+		<value>30.2 channels (IEC 62574 ed 1.0)</value>
+	</IV>
+</IntValue>

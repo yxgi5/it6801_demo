@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<IntValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<IV>
+		<key>0</key>
+		<value>Subpixel layout is not defined.</value>
+	</IV>
+	<IV>
+		<key>1</key>
+		<value>Red/Green/Blue vertical stripes (whether or not these stripes are continuous across the vertical dimension of the display screen).</value>
+	</IV>
+	<IV>
+		<key>2</key>
+		<value>Red/Green/Blue horizontal stripes (whether or not these stripes are continuous across the horizontal dimension of the display screen).</value>
+	</IV>
+	<IV>
+		<key>3</key>
+		<value>Vertical stripes (as in 1), with the primary ordering given by the order of the chromaticity information in the base EDID.</value>
+	</IV>
+	<IV>
+		<key>4</key>
+		<value>Horizontal stripes (as in 2), with the primary ordering given by the order of the chromaticity information in the base EDID.</value>
+	</IV>
+	<IV>
+		<key>5</key>
+		<value>Quad subpixels; a 2 x 2 structure with a red subpixel at top left, a blue subpixel at bottom right, and the remaining two subpixels green.</value>
+	</IV>
+	<IV>
+		<key>6</key>
+		<value>As in 5, but with red at bottom left and blue at top right.</value>
+	</IV>
+	<IV>
+		<key>7</key>
+		<value>Delta (triad) RGB subpixels</value>
+	</IV>
+	<IV>
+		<key>8</key>
+		<value>Mosiac</value>
+	</IV>
+	<IV>
+		<key>9</key>
+		<value>Quad subpixels; a 2 x 2 subpixel structure including one each of red, green, blue, and one additional color, including white, in any order.</value>
+	</IV>
+	<IV>
+		<key>10</key>
+		<value>Five subpixels, including RGB subpixels aligned as in the case of 01h, with two additional subpixels located above or below this group.</value>
+	</IV>
+	<IV>
+		<key>11</key>
+		<value>Six subpixels; as in case of 10, but with three additional colors in addition to the base set.</value>
+	</IV>
+	<IV>
+		<key>12</key>
+		<value>Clairvoyante, Inc. PenTile Matrix™ layout2 (see drawing in Appendix A) .</value>
+	</IV>
+	<IV>
+		<key>13</key>
+		<value>Rsrvd</value>
+	</IV>
+	<IV>
+		<key>14</key>
+		<value>Rsrvd</value>
+	</IV>
+	<IV>
+		<key>15</key>
+		<value>Rsrvd</value>
+	</IV>
+</IntValue>

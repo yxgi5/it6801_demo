@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VFPTable>
+	<VIC>
+		<number>1</number>
+		<format>abc</format>
+		<fieldRate>123</fieldRate>
+		<pictureAR>1</pictureAR>
+		<pixelAR>2</pixelAR>
+		<repeat>3</repeat>
+		<required>4</required>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</VIC>
+	<VIC>
+		<number>1</number>
+		<format>abc</format>
+		<fieldRate>123</fieldRate>
+		<pictureAR>1</pictureAR>
+		<pixelAR>2</pixelAR>
+		<repeat>3</repeat>
+		<required>4</required>
+		<ceaE>true</ceaE>
+		<ceaF>true</ceaF>
+	</VIC>
+</VFPTable>
